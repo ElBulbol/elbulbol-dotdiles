@@ -8,24 +8,34 @@ if [ ! -f "$LOCKFILE" ]; then
     exit 0
 fi
 
+# Get current default sink
+SINK=$(pactl get-default-sink)
+
+# Check if it's bluetooth (headset)
+if echo "$SINK" | grep -q "bluez"; then
+    CLASS="headset"
+else
+    CLASS="speaker"
+fi
+
 # Get volume
 VOLUME=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -Po '\d+(?=%)' | head -1)
 MUTED=$(pactl get-sink-mute @DEFAULT_SINK@ | grep -o "yes")
 
 if [ "$MUTED" = "yes" ]; then
-    echo '{"text":"MUTED","class":"visible"}'
+    echo "{\"text\":\"VOL MUTED\",\"class\":\"$CLASS\"}"
     exit 0
 fi
 
-# Create volume bar (10 blocks)
+# Create modern thin volume bar (10 blocks)
 BLOCKS=$((VOLUME / 10))
 BAR=""
 for i in {1..10}; do
     if [ $i -le $BLOCKS ]; then
         BAR+="━"
     else
-        BAR+="━"
+        BAR+="─"
     fi
 done
 
-echo "{\"text\":\"$BAR $VOLUME%\",\"class\":\"visible\"}"
+echo "{\"text\":\"VOL $BAR $VOLUME%\",\"class\":\"$CLASS\"}"

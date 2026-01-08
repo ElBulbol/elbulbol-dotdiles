@@ -62,8 +62,88 @@ window#waybar {
 #network,
 #bluetooth,
 #language {
-  padding: 0 10px;
+  padding: 0 8px 0 24px;
+  margin: 0 2px;
   color: #eeeeee;
+  font-size: 14px;
+  font-weight: normal;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 16px 16px;
+}
+
+/* CPU icon */
+#cpu {
+  background-image: url("/home/elbulbol/.config/waybar/icons/cpu.png");
+}
+
+/* Memory - no icon */
+#memory {
+  padding: 0 8px;
+  background-image: none;
+}
+
+/* Network icons */
+#network {
+  background-image: url("/home/elbulbol/.config/waybar/icons/internet.png");
+}
+
+#network.disconnected {
+  background-image: url("/home/elbulbol/.config/waybar/icons/no_internet.png");
+}
+
+/* Battery icons */
+#battery {
+  background-image: none;
+}
+
+#battery.charging,
+#battery.plugged {
+  background-image: url("/home/elbulbol/.config/waybar/icons/charge.png");
+  padding: 0 8px 0 24px;
+}
+
+#battery:not(.charging):not(.plugged) {
+  padding: 0 8px;
+}
+
+/* Volume and date with bold font */
+#custom-volume {
+  padding: 0 8px 0 24px;
+  margin: 0 2px;
+  color: #eeeeee;
+  font-size: 14px;
+  font-weight: normal;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 16px 16px;
+}
+
+#custom-volume.hidden {
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+#custom-date {
+  padding: 0 8px 0 24px;
+  margin: 0 2px;
+  color: #eeeeee;
+  font-size: 15px;
+  font-weight: bold;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 16px 16px;
+}
+
+/* Volume icons based on class */
+#custom-volume.speaker {
+  background-image: url("/home/elbulbol/.config/waybar/icons/speaker.png");
+}
+
+#custom-volume.headset {
+  background-image: url("/home/elbulbol/.config/waybar/icons/headset.png");
 }
 
 /* Critical states */

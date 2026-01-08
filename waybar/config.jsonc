@@ -4,9 +4,9 @@
     "height": 30,
     "spacing": 4,
 
-    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/date"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/volume", "pulseaudio", "network", "cpu", "memory", "battery", "tray"],
+    "modules-right": ["custom/volume", "network", "cpu", "memory", "battery", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -25,12 +25,15 @@
     },
 
     "cpu": {
-        "format": " {usage}%",
+        "format": "CPU: {usage}%",
+        "interval": 2,
         "tooltip": true
     },
 
     "memory": {
-        "format": " {}%"
+        "format": "[RAM] {}%",
+        "interval": 2,
+        "tooltip": true
     },
 
     "battery": {
@@ -38,33 +41,34 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "format": "BAT {capacity}%",
+        "format-charging": "BAT {capacity}%",
+        "format-plugged": "BAT {capacity}%",
+        "interval": 10
     },
 
     "network": {
-        "format-wifi": " {signalStrength}%",
-        "format-ethernet": " {ipaddr}",
-        "format-disconnected": "⚠ Disconnected",
+        "format-wifi": "NET {signalStrength}%",
+        "format-ethernet": "NET Connected",
+        "format-disconnected": "NET Disconnected",
+        "interval": 5,
         "tooltip-format": "{ifname}: {ipaddr}"
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": " muted",
-        "format-icons": {
-            "default": ["", "", ""]
-        },
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
 
     "custom/volume": {
         "exec": "/home/elbulbol/.config/waybar/volume-popup.sh",
         "interval": 1,
         "return-type": "json",
-        "format": "{text}"
+        "format": "{text}",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "signal": 8
+    },
+
+    "custom/date": {
+        "exec": "date '+%d/%m/%y'",
+        "interval": 60,
+        "format": "{}",
+        "tooltip": false
     },
 
     "tray": {
