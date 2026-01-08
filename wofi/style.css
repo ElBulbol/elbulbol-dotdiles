@@ -6,35 +6,67 @@
 }
 
 window {
-	font-size: 16px;
+	font-size: 15px;
 	font-family: "JetBrains Mono", "Roboto Mono", "Inter", monospace;
-	background: linear-gradient(180deg, rgba(24,26,30,0.95), rgba(18,20,24,0.9));
-	color: #dbe6ff;
-	padding: 8px;
-	box-shadow: 0 6px 24px rgba(0,0,0,0.6);
-	width: 700px;
+	/* make the overall window more transparent */
+	background: rgba(0,0,0,0.60);
+	color: #cfcfcf;
+	padding: 8px 6px 14px 6px;
+	box-shadow: 0 18px 48px rgba(0,0,0,0.7);
+	width: 1000px;
+	max-width: 96vw;
+	backdrop-filter: blur(6px);
 }
 
 #input {
-	background: rgba(255,255,255,0.03);
-	color: #e6eef8;
-	padding: 12px 14px;
-	border-radius: 6px;
-	margin-bottom: 8px;
-	font-size: 18px;
+	/* smaller centered search box that contrasts with the darker background */
+	background: rgba(255,255,255,0.02);
+	color: #e6e6e6;
+	padding: 10px 14px;
+	border-radius: 10px;
+	margin: 6px auto 12px auto;
+	font-size: 17px;
+	max-width: 480px;
+	width: 48%;
+	outline: none;
+	border: 1px solid rgba(255,255,255,0.03);
 }
+
+/* keep input look stable while typing, remove blue highlight/caret box */
+#input:focus, #input:selected {
+	background: rgba(255,255,255,0.02);
+	color: #ffffff;
+	box-shadow: none;
+	outline: none;
+}
+
+/* disable selection highlight inside input */
+#input ::selection { background: transparent; }
+#input { caret-color: #9aa8ff; }
 
 #entry {
-	padding: 10px 12px;
-	margin: 2px 0;
+	padding: 8px 12px;
+	margin: 6px auto;
 	display: flex;
 	align-items: center;
+	max-width: 480px;
+	width: 48%;
+	background: transparent;
+	transition: background 120ms ease, border-left 120ms ease;
 }
 
+/* selection: use a subtle solid line instead of dotted markers */
 #entry:selected {
-	background: linear-gradient(90deg, rgba(122,146,255,0.12), rgba(187,122,255,0.08));
+	background: rgba(255,255,255,0.03);
+	border-left: 3px solid rgba(255,255,255,0.06);
 	color: #ffffff;
+	box-shadow: none;
+	outline: none;
 }
+
+/* remove dotted focus/outline that some wofi builds may show */
+#entry, #entry:selected, #entry:hover { outline: none; }
+#entry:hover { background: rgba(255,255,255,0.015); }
 
 #text {
 	margin-left: 12px;
@@ -42,14 +74,14 @@ window {
 }
 
 image {
-	width: 28px;
-	height: 28px;
+	width: 24px;
+	height: 24px;
 	margin-right: 10px;
-	border-radius: 6px;
+	border-radius: 4px;
 }
 
 #info {
-	color: rgba(200,210,240,0.7);
+	color: rgba(200,200,200,0.6);
 	font-size: 12px;
 	margin-top: 6px;
 }
