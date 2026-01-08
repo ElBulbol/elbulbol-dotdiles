@@ -22,11 +22,8 @@ output * bg ~/.config/sway/wallpapers/wallpaper.png fill
 # ============================================
 # IDLE AND LOCK CONFIGURATION
 # ============================================
-exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 600 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -c 000000'
+# Use a safe launcher that checks for swayidle before running.
+exec_always --no-startup-id ~/.config/sway/scripts/swayidle-launch.sh
 
 # ============================================
 # INPUT CONFIGURATION
@@ -61,11 +58,25 @@ client.focused #404040 #404040 #ffffff #404040 #404040
 client.focused_inactive #2f2f2f #2f2f2f #aaaaaa #2f2f2f #2f2f2f
 client.unfocused #1f1f1f #1f1f1f #888888 #1f1f1f #1f1f1f
 
-# Blur for foot terminal
-blur enable
-blur_passes 2
-blur_radius 5
-layer_effects "foot" blur enable
+# ============================================
+# BLUR & TRANSPARENCY (SwayFX) - DISABLED FOR PERFORMANCE
+# ============================================
+# Blur and shadows disabled to improve performance and remove window animations
+# blur enable
+# blur_passes 3
+# blur_radius 6
+
+# Apply blur and transparency to foot terminal - DISABLED
+# for_window [app_id="foot"] opacity 0.85
+# layer_effects "foot" blur enable
+
+# Shadows for depth effect - DISABLED
+# shadows enable
+# shadow_blur_radius 20
+# shadow_color #00000066
+
+# Dim inactive windows slightly: removed (invalid without for_window rules)
+# dim_inactive 0.1
 
 # ============================================
 # KEYBINDINGS - BASICS
@@ -82,8 +93,8 @@ bindsym $mod+s exec foot bash -c '$HOME/scripts/sync-dotfiles.sh; echo ""; echo 
 # Kill focused window
 bindsym $mod+q kill
 
-# Reload sway config
-bindsym $mod+Shift+c reload
+# Reload sway config (with error logging and notification)
+bindsym $mod+Shift+c exec ~/.config/sway/sway-reload.sh
 
 # Exit sway (with confirmation)
 bindsym $mod+Shift+q exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
@@ -220,8 +231,8 @@ exec_always autotiling
 # Environment setup for screen sharing
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-# Notification daemon (install mako: sudo pacman -S mako)
-exec mako
+# Notification daemon (safe launcher — logs if missing)
+exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
 
 # ============================================
 # MISC
