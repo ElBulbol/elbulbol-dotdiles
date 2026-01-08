@@ -1,5 +1,5 @@
 
-# Arch Linux Wayland Desktop Configuration
+# "My (not the best ik)" Arch Linux Wayland Desktop Configuration
 A minimal, keyboard-driven Wayland desktop environment built on sway, waybar, wofi, and foot.
 
 ## Design Philosophy
