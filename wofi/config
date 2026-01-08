@@ -1,4 +1,10 @@
-width=600
-#mode=drun
-#allow_images=true
+# Wofi configuration
+# Use drun mode (application launcher)
+mode=drun
+width=700
+lines=10
+show-icons=true
+allow_images=true
+y_offset=60
+prompt=Run: 
 
