@@ -1,67 +1,49 @@
 #!/usr/bin/env bash
 # Enhanced prompt for Bash
-# - shows username only (no hostname) in calm blue with a subtle glow
-# - prints full path (home shortened to ~)
+# - shows Arch icon and username in calm blue/glow
+# - prints full path (home shortened to ~) using native \w
 # - shows git branch (with dirty marker)
+# - Lightweight and optimized (no unnecessary forks/listings)
 
-
-
-
-_calm_colors() {
-  # PS1-safe sequences (wrap non-printing with \[ \])
+# Define colors once
+_setup_prompt_colors() {
   RESET_PS1='\[\e[0m\]'
   BOLD_PS1='\[\e[1m\]'
+  # Arch Blue for the icon
+  ARCH_BLUE_PS1='\[\e[38;2;23;147;209m\]'
+  # Theme colors
   CALM_BLUE_PS1='\[\e[38;2;120;170;255m\]'
   GLOW_PS1='\[\e[38;2;160;200;255m\]'
-
-  # Raw ANSI sequences for printing to the terminal (used with printf "%b")
-  RESET_RAW='\e[0m'
-  BOLD_RAW='\e[1m'
-  CALM_BLUE_RAW='\e[38;2;120;170;255m'
-  GLOW_RAW='\e[38;2;160;200;255m'
-  FG_RAW='\e[38;2;230;230;230m'
 }
 
-_short_pwd() {
-  local d
-  d="$PWD"
-  if [ "$d" = "$HOME" ]; then
-    printf "~"
-  else
-    printf "%s" "${d/#$HOME/~}"
-  fi
-}
+# Run color setup once
+_setup_prompt_colors
 
-_git_branch() {
+_get_git_branch() {
+  # Fast git status check
   local b
-  b=$(git -C "$PWD" rev-parse --abbrev-ref HEAD 2>/dev/null) || return 0
+  # 2>/dev/null suppresses errors if not a git repo
+  b=$(git -C "$PWD" rev-parse --abbrev-ref HEAD 2>/dev/null) || return
+  
   local dirty=""
-  if ! git -C "$PWD" diff --quiet --ignore-submodules -- 2>/dev/null || ! git -C "$PWD" diff --cached --quiet --ignore-submodules -- 2>/dev/null; then
+  # Check for modifications
+  if ! git -C "$PWD" diff --quiet --ignore-submodules -- 2>/dev/null || \
+     ! git -C "$PWD" diff --cached --quiet --ignore-submodules -- 2>/dev/null; then
     dirty="*"
   fi
-  printf "%s%s" "$b" "$dirty"
+  printf " (%s%s)" "$b" "$dirty"
 }
 
-
-
-_set_ps1() {
-  _calm_colors
-  local dir_sh
-  dir_sh=$(_short_pwd)
-  local branch
-  branch=$(_git_branch)
-  local git_seg=""
-  if [ -n "$branch" ]; then
-    git_seg=" ${GLOW_PS1}(${branch})${RESET_PS1}"
-  fi
-  PS1="${GLOW_PS1}${BOLD_PS1}Arch@elbulbol${RESET_PS1} ${CALM_BLUE_PS1}${dir_sh}${RESET_PS1}${git_seg}\n${GLOW_PS1}❯ ${RESET_PS1}"
+_update_ps1() {
+  # Calculate git info
+  local git_info
+  git_info=$(_get_git_branch)
+  
+  # Construct the prompt
+  # \w is the bash built-in for current directory (with ~)
+  #  is the Arch Linux icon (Nerd Font)
+  PS1="${ARCH_BLUE_PS1} ${GLOW_PS1}${BOLD_PS1}Arch@elbulbol${RESET_PS1} ${CALM_BLUE_PS1}\w${RESET_PS1}${GLOW_PS1}${git_info}${RESET_PS1}\n${GLOW_PS1}❯ ${RESET_PS1}"
 }
 
-_update_prompt() {
-  _set_ps1
-}
-
-PROMPT_COMMAND=_update_prompt
-
-# To enable automatically, add this line to your ~/.bashrc:
-#   source "$HOME/.config/foot/prompt.sh"
+# Set the hook
+PROMPT_COMMAND=_update_ps1
