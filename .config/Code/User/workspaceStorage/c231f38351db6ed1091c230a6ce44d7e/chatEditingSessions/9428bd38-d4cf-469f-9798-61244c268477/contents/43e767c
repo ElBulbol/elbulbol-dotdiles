@@ -1,0 +1,213 @@
+### Sway Configuration for Arch Linux + Wayland
+### Last Updated: January 8, 2026
+
+# ============================================
+# VARIABLES
+# ============================================
+set $mod Mod4
+set $term foot
+set $menu ~/.config/sway/scripts/wofi-toggle.sh
+
+# ============================================
+# OUTPUT CONFIGURATION (MONITORS)
+# ============================================
+# Main monitor - 1920x1080 @ 144Hz
+output HDMI-A-1 resolution 1920x1080@144Hz position 0,0
+# Secondary monitor - adjust this after you check: swaymsg -t get_outputs
+output DP-1 resolution 1920x1080@60Hz position 1920,0
+
+# Wallpaper (optional - install swaybg: sudo pacman -S swaybg)
+# output * bg ~/.config/sway/wallpaper.jpg fill
+
+# ============================================
+# IDLE AND LOCK CONFIGURATION
+# ============================================
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -c 000000'
+
+# ============================================
+# INPUT CONFIGURATION
+# ============================================
+# Touchpad configuration
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+# Keyboard layout
+input type:keyboard {
+    xkb_layout "us"
+}
+
+# ============================================
+# APPEARANCE (SwayFX)
+# ============================================
+# Corner radius
+corner_radius 10
+
+# Window gaps
+gaps inner 8
+gaps outer 0
+
+# Window borders
+default_border pixel 2
+default_floating_border pixel 2
+client.focused #404040 #404040 #ffffff #404040 #404040
+client.focused_inactive #2f2f2f #2f2f2f #aaaaaa #2f2f2f #2f2f2f
+client.unfocused #1f1f1f #1f1f1f #888888 #1f1f1f #1f1f1f
+
+# Blur for foot terminal
+blur enable
+blur_passes 2
+blur_radius 5
+layer_effects "foot" blur enable
+
+# ============================================
+# KEYBINDINGS - BASICS
+# ============================================
+# Terminal
+bindsym Ctrl+Return exec $term
+
+# Application launcher
+bindsym Ctrl+Space exec $menu
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Reload sway config
+bindsym $mod+Shift+c reload
+
+# Exit sway (with confirmation)
+bindsym $mod+Shift+q exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
+
+# ============================================
+# KEYBINDINGS - WINDOW NAVIGATION
+# ============================================
+# Focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move windows
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# ============================================
+# KEYBINDINGS - WORKSPACES
+# ============================================
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+
+# Move container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+
+# Alt+Tab to switch to last workspace
+bindsym Alt+Tab workspace back_and_forth
+
+# ============================================
+# KEYBINDINGS - LAYOUT
+# ============================================
+# Fullscreen
+bindsym $mod+e fullscreen toggle
+
+# Floating
+bindsym $mod+Shift+Space floating toggle
+
+# Toggle split direction
+bindsym $mod+t layout toggle split
+
+# Tabbed layout
+bindsym $mod+m layout tabbed
+
+# Split vertical
+bindsym $mod+v split v
+
+# Split horizontal
+bindsym $mod+Shift+v split h
+
+# Resize windows
+bindsym $mod+g resize grow width 10px
+bindsym $mod+f resize shrink width 10px
+
+# ============================================
+# KEYBINDINGS - WAYBAR
+# ============================================
+# Toggle waybar visibility
+bindsym $mod+b exec killall -SIGUSR1 waybar
+
+# ============================================
+# KEYBINDINGS - SCREENSHOTS
+# ============================================
+bindsym $mod+Shift+s exec ~/.config/sway/scripts/screenshot.sh
+
+# ============================================
+# KEYBINDINGS - MEDIA KEYS (LAPTOP)
+# ============================================
+# Volume control
+bindsym XF86AudioMute exec ~/.config/waybar/scripts/volume-change.sh mute
+bindsym XF86AudioLowerVolume exec ~/.config/waybar/scripts/volume-change.sh down
+bindsym XF86AudioRaiseVolume exec ~/.config/waybar/scripts/volume-change.sh up
+
+# Media playback
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Brightness control
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# ============================================
+# FLOATING WINDOWS
+# ============================================
+for_window [app_id="blueman-manager"] floating enable
+for_window [title="Picture-in-Picture"] floating enable, sticky enable
+
+# ============================================
+# AUTOSTART
+# ============================================
+# Waybar status bar
+exec_always --no-startup-id ~/.config/waybar/launch.sh
+
+# Autotiling script
+exec_always autotiling
+
+# Environment setup for screen sharing
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# Notification daemon (install mako: sudo pacman -S mako)
+exec mako
+
+# ============================================
+# MISC
+# ============================================
+# Disable focus follows mouse
+focus_follows_mouse no
+
+# Mouse warping
+mouse_warping none

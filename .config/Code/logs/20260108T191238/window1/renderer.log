@@ -1,0 +1,28 @@
+2026-01-08 19:12:39.105 [info] Started local extension host with pid 3600.
+2026-01-08 19:12:39.420 [info] MCP Registry configured: https://api.mcp.github.com
+2026-01-08 19:12:39.545 [info] Settings Sync: Account status changed from uninitialized to unavailable
+2026-01-08 19:12:41.873 [error] CodeExpectedError: No default agent contributed
+    at Ddt.activateDefaultAgent (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:2200:15233)
+2026-01-08 19:12:41.992 [info] [perf] Render performance baseline is 14ms
+2026-01-08 19:13:54.426 [info] Settings Sync: Updated current session 1f45cba5a68c0c86
+2026-01-08 19:13:54.439 [info] Settings Sync: Account status changed from unavailable to available
+2026-01-08 19:13:55.610 [error] Failed to fetch MCP registry providers Server returned 404
+2026-01-08 19:14:10.753 [error] Cancelled: Canceled: Canceled
+    at aZe.L (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:1359:35145)
+    at async aZe.K (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:1359:33869)
+    at async aZe.C (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:1359:24589)
+    at async vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:1359:23954
+    at async Promise.all (index 0)
+    at async aZe.B (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:1359:23908)
+    at async aZe.getExtensions (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:1359:22571)
+    at async npt.getExtensions (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:2511:15150)
+    at async rin.Rc (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:2507:17026)
+    at async rin.$c (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:2507:19670)
+2026-01-08 19:14:34.869 [error] Error: Unknown extension GitHub.copilot-chat
+    at kLt._activateById (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:3901:6087)
+    at async Ddt.activateDefaultAgent (vscode-file://vscode-app/opt/visual-studio-code/resources/app/out/vs/workbench/workbench.desktop.main.js:2200:15285)
+2026-01-08 19:14:35.485 [error] [Extension Host] (node:3600) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `exe --trace-deprecation ...` to show where the warning was created)
+2026-01-08 19:14:35.486 [error] [Extension Host] (node:3600) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+2026-01-08 19:14:35.894 [error] chatParticipant must be declared in package.json: claude-code
+2026-01-08 19:14:41.646 [error] An unknown error occurred. Please consult the log for more details.
