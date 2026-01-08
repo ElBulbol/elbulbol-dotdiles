@@ -6,7 +6,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
+    "modules-right": ["custom/volume", "pulseaudio", "network", "cpu", "memory", "battery", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -58,6 +58,13 @@
             "default": ["", "", ""]
         },
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+
+    "custom/volume": {
+        "exec": "/home/elbulbol/.config/waybar/volume-popup.sh",
+        "interval": 1,
+        "return-type": "json",
+        "format": "{text}"
     },
 
     "tray": {

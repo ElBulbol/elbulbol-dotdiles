@@ -182,9 +182,9 @@ bindsym $mod+Shift+s exec ~/.config/sway/scripts/screenshot.sh
 # KEYBINDINGS - MEDIA KEYS (LAPTOP)
 # ============================================
 # Volume control
-bindsym XF86AudioMute exec ~/.config/waybar/scripts/volume-change.sh mute
-bindsym XF86AudioLowerVolume exec ~/.config/waybar/scripts/volume-change.sh down
-bindsym XF86AudioRaiseVolume exec ~/.config/waybar/scripts/volume-change.sh up
+bindsym XF86AudioMute exec ~/.config/waybar/volume-change.sh mute
+bindsym XF86AudioLowerVolume exec ~/.config/waybar/volume-change.sh down
+bindsym XF86AudioRaiseVolume exec ~/.config/waybar/volume-change.sh up
 
 # Media playback
 bindsym XF86AudioPlay exec playerctl play-pause
