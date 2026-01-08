@@ -6,7 +6,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode", "custom/date"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/volume", "network", "cpu", "memory", "battery", "tray"],
+    "modules-right": ["custom/volume", "custom/audio-output", "network", "cpu", "memory", "battery", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -25,7 +25,7 @@
     },
 
     "cpu": {
-        "format": "CPU: {usage}%",
+        "format": "CPU",
         "interval": 2,
         "tooltip": true
     },
@@ -48,8 +48,8 @@
     },
 
     "network": {
-        "format-wifi": "NET {signalStrength}%",
-        "format-ethernet": "NET Connected",
+        "format-wifi": "NET",
+        "format-ethernet": "NET",
         "format-disconnected": "NET Disconnected",
         "interval": 5,
         "tooltip-format": "{ifname}: {ipaddr}"
@@ -62,6 +62,15 @@
         "format": "{text}",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "signal": 8
+    },
+
+    "custom/audio-output": {
+        "exec": "/home/elbulbol/.config/waybar/audio-output-display.sh",
+        "interval": 5,
+        "return-type": "json",
+        "format": "{text}",
+        "on-click": "/home/elbulbol/.config/waybar/toggle-audio-output.sh",
+        "signal": 9
     },
 
     "custom/date": {

@@ -25,4 +25,4 @@ pactl list short sink-inputs | awk '{print $1}' | while read stream; do
 done
 
 # Send signal to waybar to update
-pkill -RTMIN+8 waybar
+pkill -RTMIN+9 waybar
