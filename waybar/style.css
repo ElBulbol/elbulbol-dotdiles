@@ -127,13 +127,13 @@ window#waybar {
 }
 
 #custom-date {
-  padding: 0 8px 0 24px;
-  margin: 0 2px;
-  color: #eeeeee;
+  padding: 0 5px 0 5px;
+  margin: 0 1px;
+  color: #8a8686;
   font-size: 15px;
   font-weight: bold;
   background-repeat: no-repeat;
-  background-position: 5px center;
+  background-position: 1px center;
   background-size: 16px 16px;
 }
 
