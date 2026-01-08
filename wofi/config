@@ -1,10 +1,49 @@
 # Wofi configuration
 # Use drun mode (application launcher)
+# Wofi Configuration - Modern Minimal
+# Place this file at ~/.config/wofi/config
+
+# Mode
 mode=drun
-width=700
+
+# Dimensions - wider layout
+width=900
+height=450
+
+# Lines to display
 lines=10
-show-icons=true
+
+# Icons
+show_icons=true
 allow_images=true
-y_offset=60
-prompt=Run: 
+image_size=26
+
+# Positioning
+location=center
+halign=fill
+orientation=vertical
+
+# Prompt
+prompt=Run:
+
+# Styling
+hide_scroll=false
+no_actions=true
+insensitive=true
+
+# Matching
+matching=fuzzy
+sort_order=alphabetical
+
+# Performance
+cache_file=/dev/null
+
+# Keys
+key_expand=Tab
+
+# Delays for smooth feel
+exec_search=false
+
+# Layer (for Sway)
+layer=overlay
 

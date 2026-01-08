@@ -5,68 +5,93 @@
 	border: none;
 }
 
+/* Modern Wofi Theme - Pure Black with Gray Accents */
+
+* {
+	border-radius: 10px;
+	border: none;
+	outline: none;
+}
+
 window {
 	font-size: 15px;
-	font-family: "JetBrains Mono", "Roboto Mono", "Inter", monospace;
-	/* make the overall window more transparent */
-	background: rgba(0,0,0,0.60);
-	color: #cfcfcf;
-	padding: 8px 6px 14px 6px;
-	box-shadow: 0 18px 48px rgba(0,0,0,0.7);
-	width: 1000px;
-	max-width: 96vw;
-	backdrop-filter: blur(6px);
+	font-family: "JetBrains Mono", "Roboto Mono", monospace;
+	background: rgba(8, 8, 8, 0.85);
+	color: #b0b0b0;
+	padding: 16px 20px 20px 20px;
+	box-shadow: 
+		0 25px 60px rgba(0, 0, 0, 0.8),
+		0 0 1px rgba(255, 255, 255, 0.05),
+		inset 0 1px 0 rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.04);
+	animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-8px) scale(0.98);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
 }
 
 #input {
-	/* smaller centered search box that contrasts with the darker background */
-	background: rgba(255,255,255,0.02);
-	color: #e6e6e6;
-	padding: 10px 14px;
+	background: rgba(20, 20, 20, 0.9);
+	color: #e0e0e0;
+	padding: 14px 18px;
 	border-radius: 10px;
-	margin: 6px auto 12px auto;
-	font-size: 17px;
-	max-width: 480px;
-	width: 48%;
-	outline: none;
-	border: 1px solid rgba(255,255,255,0.03);
+	margin: 4px auto 16px auto;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	border: 1px solid rgba(255, 255, 255, 0.06);
+	box-shadow: 
+		inset 0 2px 4px rgba(0, 0, 0, 0.3),
+		0 1px 0 rgba(255, 255, 255, 0.02);
+	transition: all 0.15s ease;
 }
 
-/* keep input look stable while typing, remove blue highlight/caret box */
-#input:focus, #input:selected {
-	background: rgba(255,255,255,0.02);
+#input:focus {
+	background: rgba(25, 25, 25, 0.95);
 	color: #ffffff;
-	box-shadow: none;
-	outline: none;
+	border-color: rgba(255, 255, 255, 0.1);
+	box-shadow: 
+		inset 0 2px 4px rgba(0, 0, 0, 0.3),
+		0 0 0 1px rgba(180, 180, 180, 0.1);
 }
 
-/* disable selection highlight inside input */
-#input ::selection { background: transparent; }
-#input { caret-color: #9aa8ff; }
+#input::placeholder {
+	color: rgba(150, 150, 150, 0.5);
+}
+
+#input::selection {
+	background: rgba(180, 180, 180, 0.2);
+}
+
+#input {
+	caret-color: #888888;
+}
 
 #entry {
-	padding: 8px 12px;
-	margin: 6px auto;
-	display: flex;
-	align-items: center;
-	max-width: 480px;
-	width: 48%;
+	padding: 10px 14px;
+	margin: 2px 0;
+	border-radius: 8px;
 	background: transparent;
-	transition: background 120ms ease, border-left 120ms ease;
+	border-left: 3px solid transparent;
+	transition: all 0.12s ease;
 }
 
-/* selection: use a subtle solid line instead of dotted markers */
+#entry:hover {
+	background: rgba(255, 255, 255, 0.03);
+}
+
 #entry:selected {
-	background: rgba(255,255,255,0.03);
-	border-left: 3px solid rgba(255,255,255,0.06);
+	background: rgba(255, 255, 255, 0.06);
+	border-left: 3px solid rgba(180, 180, 180, 0.4);
 	color: #ffffff;
-	box-shadow: none;
-	outline: none;
 }
-
-/* remove dotted focus/outline that some wofi builds may show */
-#entry, #entry:selected, #entry:hover { outline: none; }
-#entry:hover { background: rgba(255,255,255,0.015); }
 
 #text {
 	margin-left: 12px;
