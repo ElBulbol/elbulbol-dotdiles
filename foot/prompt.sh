@@ -3,21 +3,33 @@
 # - shows username only (no hostname) in calm blue with a subtle glow
 # - prints full path (home shortened to ~)
 # - shows git branch (with dirty marker)
-# - prints a directory listing when you change directories
 
-_PREV_PWD=""
+
+
 
 _calm_colors() {
-  RESET='\[\e[0m\]'
-  BOLD='\[\e[1m\]'
-  CALM_BLUE='\[\e[38;2;120;170;255m\]'
-  GLOW='\[\e[38;2;160;200;255m\]'
-  FG='\[\e[38;2;230;230;230m\]'
+  # PS1-safe sequences (wrap non-printing with \[ \])
+  RESET_PS1='\[\e[0m\]'
+  BOLD_PS1='\[\e[1m\]'
+  CALM_BLUE_PS1='\[\e[38;2;120;170;255m\]'
+  GLOW_PS1='\[\e[38;2;160;200;255m\]'
+
+  # Raw ANSI sequences for printing to the terminal (used with printf "%b")
+  RESET_RAW='\e[0m'
+  BOLD_RAW='\e[1m'
+  CALM_BLUE_RAW='\e[38;2;120;170;255m'
+  GLOW_RAW='\e[38;2;160;200;255m'
+  FG_RAW='\e[38;2;230;230;230m'
 }
 
 _short_pwd() {
-  local d="${PWD/#$HOME/~}"
-  printf "%s" "$d"
+  local d
+  d="$PWD"
+  if [ "$d" = "$HOME" ]; then
+    printf "~"
+  else
+    printf "%s" "${d/#$HOME/~}"
+  fi
 }
 
 _git_branch() {
@@ -30,33 +42,22 @@ _git_branch() {
   printf "%s%s" "$b" "$dirty"
 }
 
-_print_dir_and_listing() {
-  # Only print when directory changed to avoid flooding every prompt
-  if [ "$PWD" != "$_PREV_PWD" ]; then
-    _PREV_PWD="$PWD"
-    local dir
-    dir=$(_short_pwd)
-    printf "%b\n" "${CALM_BLUE}${BOLD}${dir}${RESET}"
-    # Compact colorized listing; change to -la if you prefer long listing
-    ls --color=auto -C
-  fi
-}
+
 
 _set_ps1() {
   _calm_colors
-  local dir
-  dir=$(_short_pwd)
+  local dir_sh
+  dir_sh=$(_short_pwd)
   local branch
   branch=$(_git_branch)
   local git_seg=""
   if [ -n "$branch" ]; then
-    git_seg=" ${GLOW}(${branch})${RESET}"
+    git_seg=" ${GLOW_PS1}(${branch})${RESET_PS1}"
   fi
-  PS1="${GLOW}${BOLD}elbulbol${RESET} ${CALM_BLUE}${dir}${RESET}${git_seg}\n${GLOW}❯ ${RESET}"
+  PS1="${GLOW_PS1}${BOLD_PS1}Arch@elbulbol${RESET_PS1} ${CALM_BLUE_PS1}${dir_sh}${RESET_PS1}${git_seg}\n${GLOW_PS1}❯ ${RESET_PS1}"
 }
 
 _update_prompt() {
-  _print_dir_and_listing
   _set_ps1
 }
 
