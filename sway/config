@@ -75,6 +75,9 @@ bindsym Ctrl+Return exec $term
 
 # Application launcher
 bindsym Ctrl+Space exec $menu
+ 
+# Sync dotfiles - Win+S opens terminal and runs sync script
+bindsym $mod+s exec foot bash -c '$HOME/scripts/sync-dotfiles.sh; echo ""; echo "Press Enter to close..."; read'
 
 # Kill focused window
 bindsym $mod+q kill
