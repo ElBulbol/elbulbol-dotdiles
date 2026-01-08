@@ -146,6 +146,30 @@ window#waybar {
   background-image: url("/home/elbulbol/.config/waybar/icons/headset.png");
 }
 
+/* Audio output switcher */
+#custom-audio-output {
+  padding: 0 8px 0 24px;
+  margin: 0 2px 0 15px;
+  color: #eeeeee;
+  font-size: 14px;
+  font-weight: normal;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 16px 16px;
+}
+
+#custom-audio-output.speaker {
+  background-image: url("/home/elbulbol/.config/waybar/icons/speaker.png");
+}
+
+#custom-audio-output.headset {
+  background-image: url("/home/elbulbol/.config/waybar/icons/headset.png");
+}
+
+#custom-audio-output:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Critical states */
 #battery.warning {
   color: #ffa500;
@@ -182,13 +206,6 @@ window#waybar {
 #custom-volume-popup.visible {
   opacity: 1;
   transition: opacity 0.3s ease;
-}
-
-/* Audio output */
-#custom-audio-output {
-  padding: 0 10px;
-  color: #eeeeee;
-  font-weight: bold;
 }
 
 /* Platform profile */
