@@ -216,6 +216,9 @@ exec_always autotiling
 # Environment setup for screen sharing
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+# xdg-desktop-portal for screen sharing (Discord, etc.)
+exec --no-startup-id sleep 2 && /usr/libexec/xdg-desktop-portal -r
+
 # Notification daemon (safe launcher — logs if missing)
 exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
 
