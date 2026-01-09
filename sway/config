@@ -77,8 +77,8 @@ bindsym $mod+Shift+q exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg e
 # Lock screen
 bindsym $mod+Ctrl+l exec swaylock -f --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5
 
-# Clipboard manager (Win+C for clipboard)
-bindsym $mod+c exec ~/.config/sway/scripts/clipboard-manager.sh
+# Clipboard manager (Win+V like Windows)
+bindsym $mod+v exec ~/.config/sway/scripts/clipboard-manager.sh
 
 # ============================================
 # KEYBINDINGS - WINDOW NAVIGATION
@@ -151,10 +151,10 @@ bindsym $mod+t layout toggle split
 bindsym $mod+m layout tabbed
 
 # Split vertical
-bindsym $mod+v split v
+#bindsym $mod+v split v
 
 # Split horizontal
-bindsym $mod+Shift+v split h
+#bindsym $mod+Shift+v split h
 
 # Resize windows
 bindsym $mod+g resize grow width 10px
