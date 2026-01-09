@@ -44,8 +44,12 @@ key_expand=Tab
 # Performance optimizations
 exec_search=false
 parse_search=false
-dynamic_lines=true
+dynamic_lines=false
 term=foot
+allow_markup=false
+
+# Prevent multiple instances - only one wofi at a time
+single_click=false
 
 # Layer (for Sway)
 layer=floating

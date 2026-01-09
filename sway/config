@@ -74,6 +74,12 @@ bindsym $mod+Shift+c exec ~/.config/sway/sway-reload.sh
 # Exit sway (with confirmation)
 bindsym $mod+Shift+q exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
 
+# Lock screen
+bindsym $mod+Ctrl+l exec swaylock -f --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5
+
+# Clipboard manager (Win+C for clipboard)
+bindsym $mod+c exec ~/.config/sway/scripts/clipboard-manager.sh
+
 # ============================================
 # KEYBINDINGS - WINDOW NAVIGATION
 # ============================================
@@ -212,6 +218,10 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 # Notification daemon (safe launcher — logs if missing)
 exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
+
+# Clipboard manager daemon
+exec_always wl-paste --type text --watch cliphist store
+exec_always wl-paste --type image --watch cliphist store
 
 # ============================================
 # MISC
