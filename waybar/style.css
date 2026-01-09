@@ -79,7 +79,7 @@ window#waybar {
 
 /* Memory - no icon */
 #memory {
-  padding: 0 8px;
+  padding: 0 0px 0 0px;
   background-image: none;
 }
 
@@ -104,18 +104,18 @@ window#waybar {
 }
 
 #battery:not(.charging):not(.plugged) {
-  padding: 0 8px;
+  padding: 0 3px;
 }
 
 /* Volume and date with bold font */
 #custom-volume {
-  padding: 0 8px 0 24px;
+  padding: 0 6px 0 22px;
   margin: 0 2px;
   color: #eeeeee;
   font-size: 14px;
   font-weight: normal;
   background-repeat: no-repeat;
-  background-position: 5px center;
+  background-position: 2px center;
   background-size: 16px 16px;
 }
 
@@ -148,13 +148,13 @@ window#waybar {
 
 /* Audio output switcher */
 #custom-audio-output {
-  padding: 0 8px 0 24px;
-  margin: 0 2px 0 15px;
+  padding: 0 6px 0 22px;
+  margin: 0 1px 0 20px;
   color: #eeeeee;
   font-size: 14px;
   font-weight: normal;
   background-repeat: no-repeat;
-  background-position: 5px center;
+  background-position: 2px center;
   background-size: 16px 16px;
 }
 
@@ -172,13 +172,13 @@ window#waybar {
 
 /* Bluetooth module */
 #custom-bluetooth {
-  padding: 0 8px 0 24px;
-  margin: 0 2px 0 15px;
+  padding: 0 6px 0 18px ;
+  margin: 0 2px 0 2px;
   color: #eeeeee;
   font-size: 14px;
   font-weight: normal;
   background-repeat: no-repeat;
-  background-position: 5px center;
+  background-position: 2px center;
   background-size: 16px 16px;
   background-image: url("/home/elbulbol/.config/waybar/icons/bluetooth.png");
 }
