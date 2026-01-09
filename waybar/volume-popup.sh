@@ -27,14 +27,14 @@ if [ "$MUTED" = "yes" ]; then
     exit 0
 fi
 
-# Create modern thin volume bar (10 blocks)
-BLOCKS=$((VOLUME / 10))
+# Create modern thin volume bar (6 blocks)
+BLOCKS=$((VOLUME / 17))
 BAR=""
-for i in {1..10}; do
+for i in {1..6}; do
     if [ $i -le $BLOCKS ]; then
-        BAR+="━"
+        BAR+="▰"
     else
-        BAR+="─"
+        BAR+="▱"
     fi
 done
 

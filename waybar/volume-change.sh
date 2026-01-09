@@ -14,11 +14,11 @@ case $1 in
         ;;
 esac
 
-# Create lockfile to show popup
+
 touch "$LOCKFILE"
 
-# Send signal to waybar to refresh instantly
+# signal to waybar 
 pkill -RTMIN+8 waybar
 
-# Remove lockfile after 4 seconds
-(sleep 4 && rm -f "$LOCKFILE" && pkill -RTMIN+8 waybar) &
+
+(sleep 2 && rm -f "$LOCKFILE" && pkill -RTMIN+8 waybar) &
