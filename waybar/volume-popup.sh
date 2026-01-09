@@ -28,7 +28,7 @@ if [ "$MUTED" = "yes" ]; then
 fi
 
 # Create modern thin volume bar (6 blocks)
-BLOCKS=$((VOLUME / 17))
+BLOCKS=$(( (VOLUME * 6 + 99) / 100 ))
 BAR=""
 for i in {1..6}; do
     if [ $i -le $BLOCKS ]; then

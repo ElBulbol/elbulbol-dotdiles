@@ -170,6 +170,23 @@ window#waybar {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Bluetooth module */
+#custom-bluetooth {
+  padding: 0 8px 0 24px;
+  margin: 0 2px 0 15px;
+  color: #eeeeee;
+  font-size: 14px;
+  font-weight: normal;
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  background-size: 16px 16px;
+  background-image: url("/home/elbulbol/.config/waybar/icons/bluetooth.png");
+}
+
+#custom-bluetooth:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Critical states */
 #battery.warning {
   color: #ffa500;
