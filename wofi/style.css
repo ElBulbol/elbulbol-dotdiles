@@ -4,16 +4,22 @@
 	border-radius: 10px;
 	border: none;
 	outline: none;
+	transition: none;
+	animation: none;
 }
 
-window {
-	font-size: 15px;
-	font-family: "JetBrainsMono Nerd Font", monospace;
-	background: rgba(8, 8, 8, 0.85);
+#window {
+	background: rgba(8,8,8,0.85);
 	color: #b0b0b0;
 	padding: 16px 20px 20px 20px;
-	border: 1px solid rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255,255,255,0.04);
+	border-radius: 10px;
+
+	/* Position 80px higher than center */
+	margin-top: -80px;
 }
+
+
 
 #input {
 	background: rgba(20, 20, 20, 0.9);

@@ -10,4 +10,5 @@ WOFI_CONF="$HOME/.config/wofi/config"
 WOFI_STYLE="$HOME/.config/wofi/style.css"
 
 # Launch wofi with frecency tracking and performance optimization
-exec wofi --show drun --config "$WOFI_CONF" --style "$WOFI_STYLE" --normal-window
+# Position slightly above center (80px higher)
+exec wofi --show drun --config "$WOFI_CONF" --style "$WOFI_STYLE" --no-actions

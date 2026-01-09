@@ -7,7 +7,7 @@
 mode=drun
 
 # Dimensions - wider layout
-width=800
+width=700
 height=450
 
 # Lines to display
@@ -18,7 +18,7 @@ show_icons=true
 allow_images=true
 image_size=24
 
-# Positioning
+# Positioning - slightly above center
 location=center
 halign=fill
 orientation=vertical
@@ -48,5 +48,5 @@ dynamic_lines=true
 term=foot
 
 # Layer (for Sway)
-layer=overlay
+layer=floating
 
