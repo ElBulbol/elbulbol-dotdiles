@@ -2,7 +2,7 @@
   border: none;
   border-radius: 0;
   font-family: "JetBrainsMono Nerd Font";
-  font-size: 17px;
+  font-size: 20px;
   min-height: 0;
 }
 
@@ -189,6 +189,11 @@ window#waybar {
 }
 
 #battery.critical {
+  color: #ff6b6b;
+  animation: blink 1s linear infinite;
+}
+
+#temperature.critical {
   color: #ff6b6b;
 }
 

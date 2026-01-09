@@ -1,401 +1,331 @@
-# Sway Window Manager Configuration Documentation
 
-## Overview
+# Arch Linux Wayland Desktop Configuration
+A minimal, keyboard-driven Wayland desktop environment built on sway, waybar, wofi, and foot.
 
-This document provides comprehensive documentation for an **Arch Linux** system running **Sway** (a Wayland compositor and tiling window manager) with **Waybar** as the status bar. This setup is designed for performance, minimal resource usage, and a clean dark aesthetic.
+## Design Philosophy
 
----
+This setup prioritizes:
 
-## System Architecture
+- **Keyboard-first workflow** — vim-style navigation, minimal mouse dependency
+- **Visual minimalism** — dark theme, translucent surfaces, rounded corners
+- **Wayland-native stack** — no X11 dependencies or compatibility layers
+- **Self-contained scripts** — custom audio, bluetooth, and screenshot tooling
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         WAYLAND COMPOSITOR                       │
-│                              (Sway)                              │
-├─────────────────────────────────────────────────────────────────┤
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐  │
-│  │   Waybar    │  │    Wofi     │  │    Applications         │  │
-│  │ (Status Bar)│  │ (Launcher)  │  │ (foot, discord, etc.)   │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────────┘  │
-├─────────────────────────────────────────────────────────────────┤
-│                      AUDIO SUBSYSTEM                             │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐  │
-│  │  PipeWire   │  │ WirePlumber │  │      Bluetooth          │  │
-│  │   (Audio)   │  │  (Session)  │  │   (bluez/blueman)       │  │
-│  └─────────────┘  └─────────────┘  └─────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
-```
+All components share a unified aesthetic: JetBrainsMono Nerd Font, near-black backgrounds with subtle transparency, and consistent gray/white accent colors.
 
 ---
 
-## Directory Structure
+## Components
 
-```
-~/.config/
-├── sway/
-│   ├── config                    # Main Sway configuration
-│   └── scripts/
-│       ├── screenshot.sh         # Screenshot utility (grim + slurp)
-│       └── wofi-toggle.sh        # Toggle application launcher
-│
-├── waybar/
-│   ├── config                    # Waybar modules configuration (JSON)
-│   ├── style.css                 # Waybar styling (CSS)
-│   ├── icons/                    # Custom PNG icons for modules
-│   │   ├── cpu.png
-│   │   ├── ram.png
-│   │   ├── temp.png
-│   │   ├── speaker.png
-│   │   ├── battery.png
-│   │   └── internet.png
-│   └── scripts/
-│       ├── volume-change.sh      # Volume control (up/down/mute)
-│       ├── volume-popup.sh       # Volume popup display
-│       ├── volume.sh             # Volume status display
-│       ├── audio-output.sh       # Current audio output display
-│       ├── toggle-audio-output.sh # Toggle between audio sinks
-│       ├── toggle-bluetooth.sh   # Toggle blueman-manager
-│       └── platform_profile.sh   # Power profile display
-│
-├── gtk-3.0/
-│   └── settings.ini              # GTK3 dark theme settings
-│
-├── gtk-4.0/
-│   └── settings.ini              # GTK4 dark theme settings
-│
-├── foot/
-│   └── foot.ini                  # Foot terminal configuration
-│
-└── wofi/                         # Wofi launcher configuration
-```
+### sway
 
----
+**Role:** Tiling Wayland compositor (SwayFX fork for visual effects)
 
-## Core Components
+**Configuration:** [sway/config](sway/config)
 
-### 1. Sway Window Manager
+#### Display Setup
 
-**Config Location:** `~/.config/sway/config`
+Dual-monitor configuration:
+- Primary: HDMI-A-1 at 1920×1080@144Hz (position 0,0)
+- Secondary: DP-1 at 1920×1080@60Hz (position 1920,0)
 
-Sway is an i3-compatible Wayland compositor. It handles:
-- Window management (tiling, floating, tabbed)
-- Keybindings
-- Display/output configuration
-- Running the status bar (waybar)
+Static wallpaper applied to all outputs from `sway/wallpapers/`.
 
-#### Key Variables
-```bash
-$mod = Mod4 (Super/Windows key)
-$term = foot (terminal emulator)
-$menu = wofi --show run (application launcher)
-```
+#### Visual Appearance
 
-#### Visual Settings (SwayFX)
-- **Corner Radius:** 10px on all windows
-- **Gaps:** 8px inner gaps between windows
-- **Borders:** 2px gray borders (#404040)
-- **Blur:** Enabled for foot terminal
+Uses SwayFX extensions:
+- `corner_radius 10` — rounded window corners
+- `gaps inner 8` — spacing between tiled windows
+- `default_border pixel 2` — minimal 2px borders
 
-#### Keybindings Summary
+Border colors follow a dark gray palette:
+- Focused: `#404040`
+- Unfocused: `#1f1f1f`
 
-| Keybinding | Action |
-|------------|--------|
-| `Ctrl+Return` | Open terminal (foot) |
-| `Ctrl+Space` | Toggle wofi launcher |
-| `Mod+q` | Kill focused window |
-| `Mod+Shift+c` | Reload sway config |
-| `Mod+Shift+q` | Exit sway (with confirmation) |
+#### Keybindings
+
+| Binding | Action |
+|---------|--------|
+| `Ctrl+Return` | Terminal (foot) |
+| `Ctrl+Space` | Application launcher (wofi) |
+| `Mod+q` | Kill window |
 | `Mod+h/j/k/l` | Focus left/down/up/right |
-| `Mod+Shift+h/j/k/l` | Move window left/down/up/right |
-| `Mod+1-9` | Switch to workspace 1-9 |
-| `Mod+Shift+1-9` | Move window to workspace 1-9 |
-| `Alt+Tab` | Switch to last workspace |
-| `Mod+e` | Toggle fullscreen |
-| `Mod+Shift+Space` | Toggle floating |
+| `Mod+Shift+h/j/k/l` | Move window |
+| `Mod+1-9` | Switch workspace |
+| `Mod+Shift+1-9` | Move to workspace |
+| `Alt+Tab` | Previous workspace |
+| `Mod+e` | Fullscreen |
+| `Mod+Shift+Space` | Float toggle |
 | `Mod+t` | Toggle split layout |
 | `Mod+m` | Tabbed layout |
-| `Mod+v` | Split vertical |
-| `Mod+Shift+v` | Split horizontal |
-| `Mod+g` | Grow window width |
-| `Mod+f` | Shrink window width |
-| `Mod+b` | Toggle waybar visibility |
+| `Mod+b` | Toggle waybar |
+| `Mod+Shift+b` | Restart waybar |
 | `Mod+Shift+s` | Screenshot (region select) |
+| `Mod+s` | Sync dotfiles |
+| `Mod+Shift+c` | Reload config |
+| `Mod+Shift+q` | Exit sway |
 
-#### Media/Hardware Keys
-| Key | Action |
-|-----|--------|
-| `Fn+F1 (XF86AudioMute)` | Toggle mute |
-| `Fn+F2 (XF86AudioLowerVolume)` | Volume down 5% |
-| `Fn+F3 (XF86AudioRaiseVolume)` | Volume up 5% |
-| `XF86AudioPlay/Pause` | Play/pause media |
-| `XF86MonBrightnessUp/Down` | Brightness ±5% |
+Arrow keys also work for navigation alongside vim bindings.
 
----
+#### Idle & Lock
 
-### 2. Waybar Status Bar
+Managed via [scripts/swayidle-launch.sh](sway/scripts/swayidle-launch.sh):
+- Lock after 5 minutes (`swaylock -f -c 000000`)
+- Display off after 10 minutes
+- Lock before sleep
 
-**Config Location:** `~/.config/waybar/config` (JSON)
-**Style Location:** `~/.config/waybar/style.css`
+The script fails gracefully if swayidle is not installed.
 
-Waybar displays system information and provides clickable modules.
+#### Media Keys
 
-#### Module Layout
-```
-[workspaces] [mode]          [clock]          [profile][cpu][mem][temp][vol][audio][bt][bat][lang][net][tray]
-```
+Hardware keys are bound:
+- Volume: XF86Audio{Mute,Lower,Raise}Volume → waybar volume scripts
+- Playback: XF86Audio{Play,Pause,Next,Prev} → playerctl
+- Brightness: XF86MonBrightness{Up,Down} → brightnessctl
 
-#### Modules Explained
+#### Float Rules
 
-| Module | Description | Click Action |
-|--------|-------------|--------------|
-| `sway/workspaces` | Shows workspaces 1-9 | Switch workspace |
-| `clock` | Time (Africa/Cairo timezone) | Toggle date display |
-| `cpu` | CPU usage % | - |
-| `memory` | RAM usage % | - |
-| `temperature` | CPU temperature | - |
-| `custom/volume-popup` | Volume bar + percentage | Mute toggle |
-| `custom/audio-output` | SPK/BT indicator | Toggle audio sink |
-| `bluetooth` | Device name when connected | Toggle blueman-manager |
-| `battery` | Battery percentage | Toggle time remaining |
-| `language` | EN/AR keyboard layout | - |
-| `network` | WiFi SSID or "Disconnected" | Toggle IP display |
-| `tray` | System tray icons | - |
+- `blueman-manager` — always float
+- Picture-in-Picture — float + sticky
 
-#### Signal-Based Updates
-The volume and audio modules use **signal 8** for updates:
-```bash
-pkill -RTMIN+8 waybar  # Triggers immediate refresh
-```
+#### Autostart
 
-This is more efficient than polling - modules only update when triggered.
+Waybar is launched on startup and restarted on config reload. Uses `pkill` + `setsid` pattern to ensure single instance.
 
 ---
 
-### 3. Audio System
+### waybar
 
-**Backend:** PipeWire with WirePlumber session manager
-**Control Tool:** `pactl` (PulseAudio-compatible CLI)
+**Role:** Status bar with custom modules and icon-based indicators
 
-#### How Volume Control Works
+**Configuration:** [waybar/config.jsonc](waybar/config.jsonc) | [waybar/style.css](waybar/style.css)
 
-1. **User presses Fn+F1/F2/F3** → Sway executes `volume-change.sh`
-2. **volume-change.sh:**
-   - Runs `pactl set-sink-volume/mute @DEFAULT_SINK@`
-   - Creates lockfile `/tmp/waybar_volume_popup.lock`
-   - Sends signal to waybar: `pkill -RTMIN+8 waybar`
-   - Starts 3-second timeout to hide popup
-3. **Waybar refreshes** → Runs `volume-popup.sh`
-4. **volume-popup.sh:**
-   - Checks if lockfile exists
-   - Gets volume from `pactl get-sink-volume @DEFAULT_SINK@`
-   - Returns JSON: `{"text":"━━━━━━━━── 80%","class":"visible"}`
-5. **After 3 seconds:** Lockfile removed, waybar refreshes, popup hidden
+#### Layout
 
-#### Audio Scripts Flow
 ```
-┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│  Fn Key Press    │────▶│ volume-change.sh │────▶│     pactl        │
-│  (Sway binding)  │     │                  │     │ (PipeWire API)   │
-└──────────────────┘     └────────┬─────────┘     └──────────────────┘
-                                  │
-                                  ▼
-                         ┌──────────────────┐
-                         │  pkill -RTMIN+8  │
-                         │     waybar       │
-                         └────────┬─────────┘
-                                  │
-                                  ▼
-                         ┌──────────────────┐
-                         │ volume-popup.sh  │────▶ Display in waybar
-                         └──────────────────┘
+[workspaces] [mode] [date]          [clock]          [volume] [audio-out] [bt] [net] [cpu] [ram] [bat] [tray]
 ```
+
+Position: top, 30px height.
+
+#### Modules
+
+| Module | Behavior |
+|--------|----------|
+| `sway/workspaces` | Numbered workspaces, scroll disabled, shows on all outputs |
+| `clock` | HH:MM format, click for full date, hover for calendar |
+| `custom/date` | DD/MM/YY in muted gray |
+| `custom/volume` | Popup volume bar with ▰▱ blocks, auto-hides after 2s |
+| `custom/audio-output` | Shows SPK/BT/HDMI, click to cycle sinks |
+| `custom/bluetooth` | Click opens blueman-manager (toggle behavior) |
+| `network` | Icon-based, tooltip shows IP |
+| `cpu` | Icon-based, 5s interval |
+| `memory` | Text-only `[RAM] X%` |
+| `battery` | Warning at 30%, critical at 15% with blink animation |
+
+#### Volume System
+
+Three scripts work together:
+
+1. **volume-change.sh** — handles up/down/mute, creates a lockfile, signals waybar
+2. **volume-popup.sh** — reads lockfile, outputs JSON with volume bar if active
+3. Lockfile auto-deletes after 2 seconds, hiding the popup
+
+Output format: `VOL ▰▰▰▱▱▱ 50%`
 
 #### Audio Output Switching
-- **toggle-audio-output.sh** cycles through available sinks
-- Uses `pactl list short sinks` to get all outputs
-- Moves active streams to new sink with `pactl move-sink-input`
+
+**toggle-audio-output.sh** cycles through available PulseAudio sinks and moves all active streams to the new sink.
+
+**audio-output-display.sh** detects device type:
+- `bluez` → headset icon + "BT"
+- `hdmi` → headset icon + "HDMI"
+- else → speaker icon + "SPK"
+
+#### Styling
+
+- Font: JetBrainsMono Nerd Font, 20px (bar), 14px (modules)
+- Background: `rgba(0, 0, 0, 0.3)` — translucent black
+- Workspace indicator: bottom border on focused
+- Hover: subtle white highlight
+- Critical battery: red + blink animation
+
+Icons are PNG files in [waybar/icons/](waybar/icons/) and positioned via CSS `background-image`.
 
 ---
 
-### 4. Bluetooth Management
+### wofi
 
-**Service:** bluez (system) + blueman (GUI)
-**Control Script:** `toggle-bluetooth.sh`
+**Role:** Application launcher (drun mode)
+
+**Configuration:** [wofi/config](wofi/config) | [wofi/style.css](wofi/style.css)
 
 #### Behavior
-- **Click bluetooth module** → Opens blueman-manager
-- **Click again** → Kills all blueman processes (including tray icon)
 
-```bash
-# toggle-bluetooth.sh logic
-if pgrep -f "blueman" > /dev/null; then
-    pkill -9 -f "blueman"
-else
-    blueman-manager &
-fi
-```
+- Mode: `drun` (desktop entries only)
+- Dimensions: 900×450px, centered
+- Matching: `contains` — partial string matching
+- Case insensitive
+- Cache file at `~/.cache/wofi-drun` for frecency tracking
 
-#### Bluetooth Audio Profile
-When bluetooth audio device connects:
-- PipeWire automatically creates a new sink (e.g., `bluez_sink.XX_XX_XX_XX_XX_XX.a2dp_sink`)
-- `audio-output.sh` detects "bluez" in sink name → displays "BT"
-- User can click to switch between SPK/BT
+#### Toggle Script
 
----
+[wofi-toggle.sh](wofi/wofi-toggle.sh) implements toggle behavior:
+- If wofi running → kill it
+- Else → launch with explicit config/style paths
 
-### 5. Screenshots
+Runs as `--normal-window` for proper sway integration.
 
-**Script:** `~/.config/sway/scripts/screenshot.sh`
-**Tools:** `grim` (screenshot) + `slurp` (region select) + `wl-copy` (clipboard)
+#### Styling
 
-```bash
-# Flow:
-# 1. Create ~/screenshots/ if needed
-# 2. User selects region with slurp
-# 3. grim captures to ~/screenshots/YYYY-MM-DD_HH-MM-SS.png
-# 4. wl-copy puts image in clipboard
-```
+- Background: `rgba(8, 8, 8, 0.85)` — near-black with blur-ready alpha
+- Input: dark gray, rounded
+- Selection: left border accent, white text
+- Icons: 24×24px
+- Font: JetBrainsMono Nerd Font, 15px
+
+Scrollbars hidden via `display: none`.
 
 ---
 
-### 6. Application Launcher (Wofi)
+### foot
 
-**Script:** `~/.config/sway/scripts/wofi-toggle.sh`
+**Role:** GPU-accelerated Wayland terminal
 
-Toggle behavior - if wofi is running, kill it; otherwise, launch it:
+**Configuration:** [foot/foot.ini](foot/foot.ini) | [foot/prompt.sh](foot/prompt.sh)
+
+#### Terminal Settings
+
+- Font: JetBrainsMono Nerd Font, 12pt
+- Padding: 8×8px
+- Scrollback: 5000 lines
+- Cursor: block, no blink
+- Mouse: hides when typing
+- URLs: clickable (xdg-open)
+
+#### Color Scheme
+
+Tokyo Night-inspired dark palette:
+- Background: `#0a0a0a` at 80% alpha
+- Foreground: `#e6e6e6`
+- Accent colors: soft reds, greens, blues
+
+#### Key Bindings
+
+| Binding | Action |
+|---------|--------|
+| `Ctrl+Shift+c/v` | Copy/Paste |
+| `Ctrl++/-/0` | Font size |
+| `Shift+PgUp/PgDn` | Scroll page |
+| `Ctrl+Shift+o` | Open URLs |
+| `Ctrl+Shift+y` | Copy URL |
+
+#### Custom Prompt
+
+[prompt.sh](foot/prompt.sh) provides a minimal bash prompt:
+
+```
+ Arch@elbulbol ~/path/to/dir (branch*)
+❯ 
+```
+
+- Arch Linux icon (Nerd Font)
+- Git branch with dirty indicator (`*`)
+- Two-line format for readability
+- White text throughout
+
+Source it in `.bashrc`:
 ```bash
-if pgrep -x wofi > /dev/null; then
-    pkill wofi
-else
-    wofi --show drun
-fi
+source ~/.config/foot/prompt.sh
 ```
 
 ---
 
-## Theme Configuration
+## Component Interaction
 
-### Dark Mode (GTK Applications)
-**Files:** `~/.config/gtk-3.0/settings.ini` and `~/.config/gtk-4.0/settings.ini`
-
-```ini
-[Settings]
-gtk-application-prefer-dark-theme=1
-gtk-theme-name=Adwaita-dark
+```
+┌─────────────────────────────────────────────────────┐
+│                      sway                           │
+│  - launches waybar on startup                       │
+│  - launches wofi via Ctrl+Space                     │
+│  - launches foot via Ctrl+Return                    │
+│  - signals waybar for audio changes                 │
+└──────────────────────┬──────────────────────────────┘
+                       │
+        ┌──────────────┼──────────────┐
+        ▼              ▼              ▼
+   ┌─────────┐    ┌─────────┐    ┌─────────┐
+   │ waybar  │    │  wofi   │    │  foot   │
+   │         │    │         │    │         │
+   │ scripts │    │ toggle  │    │ prompt  │
+   │   ▼     │    │ script  │    │ script  │
+   │ pactl   │    └─────────┘    └─────────┘
+   │ blueman │
+   └─────────┘
 ```
 
-This ensures all GTK applications (including blueman-manager) use dark theme.
-
-### Waybar Colors
-- **Background:** `rgba(0, 0, 0, 0.3)` (30% transparent black)
-- **Foreground:** `#eeeeee` (light gray)
-- **Inactive:** `#aaaaaa` (darker gray)
-- **Font:** JetBrainsMono Nerd Font, 17px
+- sway binds volume keys → waybar's `volume-change.sh`
+- waybar signals refresh via `pkill -RTMIN+8/9`
+- wofi toggle script ensures single instance
+- foot inherits environment from sway session
 
 ---
 
 ## Dependencies
 
-### Required Packages (Arch Linux)
-```bash
-# Core
-sway                    # Window manager
-waybar                  # Status bar
-foot                    # Terminal emulator
-wofi                    # Application launcher
+Required:
+- sway / swayfx
+- waybar
+- wofi
+- foot
+- pactl (pulseaudio / pipewire-pulse)
+- playerctl
+- grim, slurp, wl-copy (screenshots)
+- brightnessctl
+- mako (notifications)
+- swayidle, swaylock
+- JetBrainsMono Nerd Font
 
-# Audio
-pipewire                # Audio server
-wireplumber             # Session manager
-pipewire-pulse          # PulseAudio compatibility
-bluez                   # Bluetooth stack
-blueman                 # Bluetooth GUI manager
-
-# Utilities
-grim                    # Screenshot tool
-slurp                   # Region selector
-wl-clipboard            # Wayland clipboard (wl-copy)
-brightnessctl           # Brightness control
-playerctl               # Media control
-autotiling              # Auto tiling script
-
-# Fonts
-ttf-jetbrains-mono-nerd # Nerd font for icons
-```
+Optional:
+- blueman (bluetooth management)
 
 ---
 
-## Troubleshooting
+## Files Analyzed
 
-### Volume keys not working
-1. Check if PipeWire is running: `systemctl --user status pipewire`
-2. Test pactl: `pactl get-sink-volume @DEFAULT_SINK@`
-3. Check keybindings: `swaymsg -t get_bindings | grep Audio`
-
-### Bluetooth won't connect
-1. Restart bluetooth: `sudo systemctl restart bluetooth`
-2. Remove and re-pair device in blueman-manager
-3. Check logs: `journalctl --user -u wireplumber -f`
-
-### Waybar not updating
-1. Send manual signal: `pkill -RTMIN+8 waybar`
-2. Restart waybar: `killall waybar && waybar &`
-3. Check script permissions: `ls -la ~/.config/waybar/scripts/`
-
-### Screen sharing not working
-Sway config includes necessary environment setup:
-```bash
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 ```
-Also uses `xwaylandvideobridge` for Discord compatibility.
+sway/
+  config
+  sway-reload.sh
+  sway-start.sh
+  scripts/
+    mako-launch.sh
+    screenshot.sh
+    swayidle-launch.sh
 
----
+waybar/
+  config.jsonc
+  style.css
+  audio-output-display.sh
+  bluetooth-toggle.sh
+  toggle-audio-output.sh
+  volume-change.sh
+  volume-popup.sh
+  icons/
+    bluetooth.png
+    charge.png
+    cpu.png
+    headset.png
+    internet.png
+    no_internet.png
+    speaker.png
 
-## File Modification Guide
+wofi/
+  config
+  style.css
+  wofi-toggle.sh
 
-### To change keybindings
-Edit `~/.config/sway/config`, then reload: `Mod+Shift+c`
-
-### To change waybar modules
-Edit `~/.config/waybar/config` (JSON), restart waybar
-
-### To change waybar appearance
-Edit `~/.config/waybar/style.css`, waybar auto-reloads
-
-### To add custom waybar script
-1. Create script in `~/.config/waybar/scripts/`
-2. Make executable: `chmod +x script.sh`
-3. Add to waybar config as `custom/name` module
-4. Use `signal` for event-driven updates or `interval` for polling
-
----
-
-## Quick Reference
-
-### Reload Commands
-```bash
-swaymsg reload                    # Reload sway config
-pkill -RTMIN+8 waybar            # Refresh waybar modules
-killall waybar && waybar &       # Restart waybar completely
+foot/
+  foot.ini
+  prompt.sh
 ```
-
-### Useful Commands
-```bash
-swaymsg -t get_outputs           # List displays
-swaymsg -t get_tree              # Window tree
-pactl list short sinks           # List audio outputs
-pactl get-sink-volume @DEFAULT_SINK@  # Current volume
-bluetoothctl devices             # List bluetooth devices
-```
-
----
-
-## Author Notes
-
-This configuration prioritizes:
-- **Performance:** Signal-based updates instead of polling where possible
-- **Minimalism:** Text-only display, no unnecessary icons in modules
-- **Dark theme:** Consistent dark appearance across all applications
-- **Reliability:** Using `pactl` over `wpctl` for better compatibility
-
-Last updated: January 8, 2026
