@@ -6,7 +6,7 @@
 # ============================================
 set $mod Mod4
 set $term foot
-set $menu ~/.config/wofi/wofi-toggle.sh
+set $menu ~/.config/wofi/wofi-flow-launcher.sh
 
 # ============================================
 # OUTPUT CONFIGURATION (MONITORS)

@@ -1,52 +1,29 @@
-# Wofi configuration
-# Use drun mode (application launcher)
-# Wofi Configuration - Modern Minimal
-# Place this file at ~/.config/wofi/config
+# Wofi Configuration - Lightweight Flow Launcher Style
 
-# Mode
 mode=drun
-
-# Dimensions - wider layout
 width=700
 height=450
-
-# Lines to display
 lines=8
 
-# Icons - optimized size
+# Icons
 show_icons=true
 allow_images=true
 image_size=24
 
-# Positioning - slightly above center
+# Position
 location=center
 halign=fill
-orientation=vertical
 
 # Prompt
-prompt=Run:
+prompt=Search:
 
-# Styling
-hide_scroll=false
+# Performance
+hide_scroll=true
 no_actions=true
 insensitive=true
-
-# Matching - contains is faster and respects frecency better
 matching=contains
-sort_order=default
-
-# Performance - Enable cache for frecency tracking
 cache_file=/home/elbulbol/.cache/wofi-drun
-
-# Keys
-key_expand=Tab
-
-# Performance optimizations
 exec_search=false
-parse_search=true
-dynamic_lines=true
-term=foot
-
-# Layer (for Sway)
-layer=floating
+parse_search=false
+dynamic_lines=false
 
