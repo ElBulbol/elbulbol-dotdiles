@@ -26,13 +26,13 @@
 
     "cpu": {
         "format": "CPU",
-        "interval": 2,
+        "interval": 5,
         "tooltip": true
     },
 
     "memory": {
         "format": "[RAM] {}%",
-        "interval": 2,
+        "interval": 5,
         "tooltip": true
     },
 
@@ -57,7 +57,7 @@
 
     "custom/volume": {
         "exec": "/home/elbulbol/.config/waybar/volume-popup.sh",
-        "interval": 1,
+        "interval": 2,
         "return-type": "json",
         "format": "{text}",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -71,12 +71,6 @@
         "format": "{text}",
         "on-click": "/home/elbulbol/.config/waybar/toggle-audio-output.sh",
         "signal": 9
-    },
-
-    "custom/bluetooth": {
-        "format": "BT",
-        "on-click": "/home/elbulbol/.config/waybar/bluetooth-toggle.sh",
-        "tooltip": false
     },
 
     "custom/bluetooth": {

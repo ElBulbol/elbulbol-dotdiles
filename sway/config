@@ -44,39 +44,14 @@ input type:keyboard {
 # ============================================
 # APPEARANCE (SwayFX)
 # ============================================
-# Corner radius
 corner_radius 10
-
-# Window gaps
 gaps inner 8
 gaps outer 0
-
-# Window borders
 default_border pixel 2
 default_floating_border pixel 2
 client.focused #404040 #404040 #ffffff #404040 #404040
 client.focused_inactive #2f2f2f #2f2f2f #aaaaaa #2f2f2f #2f2f2f
 client.unfocused #1f1f1f #1f1f1f #888888 #1f1f1f #1f1f1f
-
-# ============================================
-# BLUR & TRANSPARENCY (SwayFX) - DISABLED FOR PERFORMANCE
-# ============================================
-# Blur and shadows disabled to improve performance and remove window animations
-# blur enable
-# blur_passes 3
-# blur_radius 6
-
-# Apply blur and transparency to foot terminal - DISABLED
-# for_window [app_id="foot"] opacity 0.85
-# layer_effects "foot" blur enable
-
-# Shadows for depth effect - DISABLED
-# shadows enable
-# shadow_blur_radius 20
-# shadow_color #00000066
-
-# Dim inactive windows slightly: removed (invalid without for_window rules)
-# dim_inactive 0.1
 
 # ============================================
 # KEYBINDINGS - BASICS

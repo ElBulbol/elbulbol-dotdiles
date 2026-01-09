@@ -56,12 +56,8 @@ window#waybar {
 /* System modules */
 #cpu,
 #memory,
-#temperature,
-#backlight,
 #battery,
-#network,
-#bluetooth,
-#language {
+#network {
   padding: 0 8px 0 24px;
   margin: 0 2px;
   color: #eeeeee;
@@ -194,41 +190,12 @@ window#waybar {
 
 #battery.critical {
   color: #ff6b6b;
-  animation: blink 1s linear infinite;
-}
-
-#temperature.critical {
-  color: #ff6b6b;
 }
 
 @keyframes blink {
   50% {
     opacity: 0.5;
   }
-}
-
-/* Volume popup */
-#custom-volume-popup {
-  padding: 0 10px;
-  color: #eeeeee;
-}
-
-#custom-volume-popup.hidden {
-  opacity: 0;
-  padding: 0;
-  margin: 0;
-  min-width: 0;
-}
-
-#custom-volume-popup.visible {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-/* Platform profile */
-#custom-platform_profile {
-  padding: 0 10px;
-  color: #eeeeee;
 }
 
 /* Tray */
