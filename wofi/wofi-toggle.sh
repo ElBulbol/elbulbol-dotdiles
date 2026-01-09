@@ -9,5 +9,5 @@ fi
 WOFI_CONF="$HOME/.config/wofi/config"
 WOFI_STYLE="$HOME/.config/wofi/style.css"
 
-# Launch wofi with the config and style, allow images and icons
-exec wofi --config "$WOFI_CONF" --show drun --style "$WOFI_STYLE"
+# Launch wofi with frecency tracking and performance optimization
+exec wofi --show drun --config "$WOFI_CONF" --style "$WOFI_STYLE" --normal-window

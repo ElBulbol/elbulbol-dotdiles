@@ -148,8 +148,8 @@ window#waybar {
 
 /* Audio output switcher */
 #custom-audio-output {
-  padding: 0 6px 0 22px;
-  margin: 0 1px 0 20px;
+  padding: 0 2px 0 22px;
+  margin: 0 1px 0 2px;
   color: #eeeeee;
   font-size: 14px;
   font-weight: normal;

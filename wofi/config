@@ -11,12 +11,12 @@ width=900
 height=450
 
 # Lines to display
-lines=10
+lines=8
 
-# Icons
+# Icons - optimized size
 show_icons=true
 allow_images=true
-image_size=26
+image_size=24
 
 # Positioning
 location=center
@@ -31,18 +31,21 @@ hide_scroll=false
 no_actions=true
 insensitive=true
 
-# Matching
-matching=fuzzy
-sort_order=alphabetical
+# Matching - contains is faster and respects frecency better
+matching=contains
+sort_order=default
 
-# Performance
-cache_file=/dev/null
+# Performance - Enable cache for frecency tracking
+cache_file=/home/elbulbol/.cache/wofi-drun
 
 # Keys
 key_expand=Tab
 
-# Delays for smooth feel
+# Performance optimizations
 exec_search=false
+parse_search=true
+dynamic_lines=true
+term=foot
 
 # Layer (for Sway)
 layer=overlay
