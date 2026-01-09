@@ -1,59 +1,80 @@
-/* Lightweight Wofi Theme - Optimized */
+/* Modern Wofi Theme - Pure Black with Gray Accents */
 
 * {
+	border-radius: 10px;
 	border: none;
 	outline: none;
+	transition: none;
+	animation: none;
 }
 
 #window {
-	background: rgba(8,8,8,0.92);
+	background: rgba(8,8,8,0.85);
 	color: #b0b0b0;
-	padding: 18px;
-	border: 1px solid #222;
+	padding: 16px 20px 20px 20px;
+	border: 1px solid rgba(255,255,255,0.04);
 	border-radius: 10px;
+
+	/* Position 80px higher than center */
 	margin-top: -80px;
 }
 
+
+
 #input {
-	background: rgba(20,20,20,0.95);
-	color: #555;
+	background: rgba(20, 20, 20, 0.9);
+	color: #383535;
+
 	padding: 10px 16px;
-	margin: 8px 40px 12px 40px;
+	margin: 8px 60px 9px 60px;
+
 	border-radius: 8px;
 	font-size: 15px;
-	border: 1px solid rgba(255,255,255,0.06);
+	border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+
 #input:focus {
-	color: #fff;
-	border-color: rgba(255,255,255,0.12);
+	background: rgba(25, 25, 25, 0.95);
+	color: #ffffff;
+	border-color: rgba(255, 255, 255, 0.1);
 }
 
 #entry {
-	padding: 8px 12px;
+	padding: 10px 14px;
 	margin: 2px 0;
-	border-radius: 6px;
+	border-radius: 8px;
 	background: transparent;
+	border-left: 3px solid transparent;
 }
 
 #entry:hover {
-	background: rgba(255,255,255,0.04);
+	background: rgba(255, 255, 255, 0.03);
 }
 
 #entry:selected {
-	background: rgba(255,255,255,0.08);
+	background: rgba(255, 255, 255, 0.06);
+	border-left: 3px solid rgba(180, 180, 180, 0.4);
 	color: #ffffff;
 }
 
 #text {
-	margin-left: 10px;
-	font-size: 14px;
+	margin-left: 12px;
+	font-size: 15px;
 }
 
 image {
 	width: 24px;
 	height: 24px;
-	margin-right: 8px;
+	margin-right: 10px;
+	border-radius: 4px;
 }
 
-scrollbar { display: none; }
+#info {
+	color: rgba(200,200,200,0.6);
+	font-size: 12px;
+	margin-top: 6px;
+}
+
+/* hide scrollbars for clean look */
+scrollbar, scrollbar-thumb { display: none; }
