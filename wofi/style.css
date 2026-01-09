@@ -17,13 +17,16 @@ window {
 
 #input {
 	background: rgba(20, 20, 20, 0.9);
-	color: #e0e0e0;
-	padding: 14px 18px;
-	border-radius: 10px;
-	margin: 4px auto 16px auto;
-	font-size: 16px;
+	color: #383535;
+
+	padding: 10px 16px;
+	margin: 8px 60px 9px 60px;
+
+	border-radius: 8px;
+	font-size: 15px;
 	border: 1px solid rgba(255, 255, 255, 0.06);
 }
+
 
 #input:focus {
 	background: rgba(25, 25, 25, 0.95);
