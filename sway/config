@@ -171,9 +171,12 @@ bindsym $mod+Shift+b exec sh -c 'pkill -x waybar || true; setsid waybar -c ~/.co
 bindsym $mod+Mod1+c exec killall -SIGUSR1 waybar
 
 # ============================================
-# KEYBINDINGS - SCREENSHOTS
+# KEYBINDINGS - SCREENSHOTS & RECORDING
 # ============================================
 bindsym $mod+Shift+s exec ~/.config/sway/scripts/screenshot.sh
+
+# OBS Studio (Win+Shift+R for Recording)
+bindsym $mod+Shift+r exec ~/.config/sway/scripts/obs-wayland.sh
 
 # ============================================
 # KEYBINDINGS - MEDIA KEYS (LAPTOP)
