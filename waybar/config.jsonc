@@ -6,7 +6,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode", "custom/date"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/volume", "custom/audio-output", "custom/bluetooth", "network", "cpu", "memory", "battery", "tray"],
+    "modules-right": ["custom/volume", "custom/brightness", "custom/audio-output", "custom/bluetooth", "network", "cpu", "memory", "battery", "tray"],
 
     "sway/workspaces": {
         "disable-scroll": true,
@@ -62,6 +62,14 @@
         "format": "{text}",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "signal": 8
+    },
+
+    "custom/brightness": {
+        "exec": "/home/elbulbol/.config/waybar/brightness-popup.sh",
+        "interval": 2,
+        "return-type": "json",
+        "format": "{text}",
+        "signal": 10
     },
 
     "custom/audio-output": {

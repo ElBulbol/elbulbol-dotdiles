@@ -184,8 +184,10 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Brightness control
-bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec ~/.config/waybar/brightness-change.sh up
+bindsym XF86MonBrightnessDown exec ~/.config/waybar/brightness-change.sh down
+bindsym F6 exec ~/.config/waybar/brightness-change.sh up
+bindsym F5 exec ~/.config/waybar/brightness-change.sh down
 
 # ============================================
 # FLOATING WINDOWS

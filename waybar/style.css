@@ -103,8 +103,9 @@ window#waybar {
   padding: 0 3px;
 }
 
-/* Volume and date with bold font */
-#custom-volume {
+/* Volume and brightness bars */
+#custom-volume,
+#custom-brightness {
   padding: 0 6px 0 22px;
   margin: 0 2px;
   color: #eeeeee;
@@ -115,7 +116,8 @@ window#waybar {
   background-size: 16px 16px;
 }
 
-#custom-volume.hidden {
+#custom-volume.hidden,
+#custom-brightness.hidden {
   opacity: 0;
   padding: 0;
   margin: 0;
@@ -140,6 +142,11 @@ window#waybar {
 
 #custom-volume.headset {
   background-image: url("/home/elbulbol/.config/waybar/icons/headset.png");
+}
+
+/* Brightness icon */
+#custom-brightness.brightness {
+  background-image: url("/home/elbulbol/.config/waybar/icons/brightness.png");
 }
 
 /* Audio output switcher */
