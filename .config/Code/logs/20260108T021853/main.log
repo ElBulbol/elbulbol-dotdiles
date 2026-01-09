@@ -1,5 +1,0 @@
-2026-01-08 02:18:53.388 [error] Invalid path provided: /home/elbulbol/Dotfile/system-backup-project, ENOENT: no such file or directory, stat '/home/elbulbol/Dotfile/system-backup-project'
-2026-01-08 02:18:53.388 [error] Invalid path provided: /home/elbulbol/Dotfile/system-backup-project, ENOENT: no such file or directory, stat '/home/elbulbol/Dotfile/system-backup-project'
-2026-01-08 02:18:53.388 [info] update#setState idle
-2026-01-08 02:19:23.381 [info] update#setState checking for updates
-2026-01-08 02:19:23.457 [info] update#setState idle
