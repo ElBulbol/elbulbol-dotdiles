@@ -56,13 +56,20 @@ corner_radius 10
 gaps inner 8
 gaps outer 0
 # Slightly thicker borders so focused windows are more visible
-default_border pixel 3
-default_floating_border pixel 3
-# Make focused border stand out with a subtle accent color
+# Thicker borders so the two-tone effect is visible
+default_border pixel 6
+default_floating_border pixel 6
+# Simulate a vertical gradient by using an outer white border and inner black child border.
+# Sway doesn't support real gradient borders; this two-tone border gives a similar visual cue.
 # Format: client.focused <border> <background> <text> <indicator> <child_border>
-client.focused #6ea8fe #404040 #ffffff #6ea8fe #6ea8fe
+# Approximated vertical gradient using three tones:
+# outer border = white, indicator (mid border) = light gray,
+# inner child border = black. This gives a smoother transition.
+client.focused #7a7878 #404040 #ffffff #7a7878 #7a7878
 client.focused_inactive #2f2f2f #2f2f2f #aaaaaa #2f2f2f #2f2f2f
-client.unfocused #1f1f1f #1f1f1f #888888 #1f1f1f #1f1f1f
+# Make unfocused border lighter than the original dark gray
+# Format: client.unfocused <border> <background> <text> <indicator> <child_border>
+client.unfocused #e6e6e6 #1f1f1f #bdbdbd #dcdcdc #2b2b2b
 
 # ============================================
 # KEYBINDINGS - BASICS
