@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+OUTDIR="$HOME/.config/sway/edids"
+mkdir -p "$OUTDIR"
+
+for d in /sys/class/drm/card*/*/edid 2>/dev/null; do
+  conndir=$(dirname "$d")
+  name=$(basename "$conndir")
+  out="$OUTDIR/${name}.bin"
+  if [ -r "$d" ]; then
+    cp "$d" "$out"
+    printf "Wrote %s\n" "$out"
+  else
+    printf "No EDID for %s\n" "$name"
+  fi
+done
+
+if command -v edid-decode >/dev/null 2>&1; then
+  for f in "$OUTDIR"/*.bin; do
+    [ -f "$f" ] || continue
+    echo "\n== decode $f =="
+    edid-decode "$f" || true
+  done
+else
+  echo "\nInstall edid-decode to get human-readable EDID info: sudo pacman -S edid-decode"
+fi

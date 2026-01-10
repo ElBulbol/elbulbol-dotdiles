@@ -4,14 +4,30 @@
     "height": 30,
     "spacing": 4,
 
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/date"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/monitor", "custom/date"],
     "modules-center": ["clock"],
     "modules-right": ["custom/volume", "custom/brightness", "custom/audio-output", "custom/bluetooth", "network", "cpu", "memory", "battery", "tray"],
 
+    "custom/monitor": {
+        "exec": "~/.config/waybar/monitor-label.sh",
+        "interval": 1,
+        "return-type": "json",
+        "format": "  {}"
+    },
+
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name}"
+        "all-outputs": false,
+        "format": "{name}",
+        "format-icons": {
+            "10": "󰍹",
+            "11": "󰍹",
+            "12": "󰍹"
+        },
+        "persistent-workspaces": {
+            "eDP-1": [1, 2, 3, 4, 5],
+            "HDMI-A-5": [6, 7, 8, 9]
+        }
     },
 
     "sway/mode": {
@@ -21,7 +37,8 @@
     "clock": {
         "format": "{:%H:%M}",
         "format-alt": "{:%A, %B %d, %Y}",
-        "tooltip-format": "<tt>{calendar}</tt>"
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "timezone": "Europe/Athens"
     },
 
     "cpu": {

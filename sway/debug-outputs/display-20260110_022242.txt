@@ -1,0 +1,709 @@
+== get_outputs ==
+[
+  {
+    "id": 3,
+    "type": "output",
+    "orientation": "none",
+    "percent": 0.59999999999999998,
+    "urgent": false,
+    "marks": [],
+    "layout": "output",
+    "border": "none",
+    "current_border_width": 0,
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1920,
+      "height": 1080
+    },
+    "deco_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "window_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "geometry": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "name": "eDP-1",
+    "window": null,
+    "nodes": [],
+    "floating_nodes": [],
+    "focus": [
+      161,
+      160
+    ],
+    "fullscreen_mode": 0,
+    "sticky": false,
+    "floating": null,
+    "scratchpad_state": null,
+    "primary": false,
+    "make": "BOE",
+    "model": "0x0C29",
+    "serial": "0x00000067",
+    "modes": [
+      {
+        "width": 1920,
+        "height": 1080,
+        "refresh": 144002,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "refresh": 60001,
+        "picture_aspect_ratio": "none"
+      }
+    ],
+    "non_desktop": false,
+    "active": true,
+    "dpms": true,
+    "power": true,
+    "scale": 1.0,
+    "scale_filter": "nearest",
+    "transform": "normal",
+    "adaptive_sync_status": "disabled",
+    "layer_shell_surfaces": [
+      {
+        "namespace": "wallpaper",
+        "layer": "background",
+        "extent": {
+          "width": 1920,
+          "height": 1080,
+          "x": 0,
+          "y": 0
+        },
+        "effects": {
+          "blur": false,
+          "blur_xray": false,
+          "blur_ignore_transparent": false,
+          "shadows": false,
+          "corner_radius": 0
+        }
+      },
+      {
+        "namespace": "waybar",
+        "layer": "top",
+        "extent": {
+          "width": 1920,
+          "height": 30,
+          "x": 0,
+          "y": 0
+        },
+        "effects": {
+          "blur": false,
+          "blur_xray": false,
+          "blur_ignore_transparent": false,
+          "shadows": false,
+          "corner_radius": 0
+        }
+      }
+    ],
+    "current_workspace": "2",
+    "current_mode": {
+      "width": 1920,
+      "height": 1080,
+      "refresh": 144002,
+      "picture_aspect_ratio": "none"
+    },
+    "max_render_time": 0,
+    "allow_tearing": false,
+    "focused": true,
+    "subpixel_hinting": "unknown"
+  },
+  {
+    "id": 164,
+    "type": "output",
+    "orientation": "none",
+    "percent": 0.3792592592592593,
+    "urgent": false,
+    "marks": [],
+    "layout": "output",
+    "border": "none",
+    "current_border_width": 0,
+    "rect": {
+      "x": 1920,
+      "y": 0,
+      "width": 1280,
+      "height": 1024
+    },
+    "deco_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "window_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "geometry": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "name": "HDMI-A-5",
+    "window": null,
+    "nodes": [],
+    "floating_nodes": [],
+    "focus": [
+      165
+    ],
+    "fullscreen_mode": 0,
+    "sticky": false,
+    "floating": null,
+    "scratchpad_state": null,
+    "primary": false,
+    "make": "Hewlett Packard",
+    "model": "LE1711",
+    "serial": "CNC029R7P1",
+    "modes": [
+      {
+        "width": 1280,
+        "height": 1024,
+        "refresh": 60020,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "refresh": 60000,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "refresh": 59940,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 1280,
+        "height": 960,
+        "refresh": 60000,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "refresh": 60000,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "refresh": 59940,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 1024,
+        "height": 768,
+        "refresh": 60004,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 800,
+        "height": 600,
+        "refresh": 60317,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 720,
+        "height": 480,
+        "refresh": 60000,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 720,
+        "height": 480,
+        "refresh": 59940,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 640,
+        "height": 480,
+        "refresh": 60000,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 640,
+        "height": 480,
+        "refresh": 59940,
+        "picture_aspect_ratio": "none"
+      },
+      {
+        "width": 720,
+        "height": 400,
+        "refresh": 70082,
+        "picture_aspect_ratio": "none"
+      }
+    ],
+    "non_desktop": false,
+    "active": true,
+    "dpms": true,
+    "power": true,
+    "scale": 1.0,
+    "scale_filter": "nearest",
+    "transform": "normal",
+    "adaptive_sync_status": "disabled",
+    "layer_shell_surfaces": [
+      {
+        "namespace": "wallpaper",
+        "layer": "background",
+        "extent": {
+          "width": 1280,
+          "height": 1024,
+          "x": 0,
+          "y": 0
+        },
+        "effects": {
+          "blur": false,
+          "blur_xray": false,
+          "blur_ignore_transparent": false,
+          "shadows": false,
+          "corner_radius": 0
+        }
+      },
+      {
+        "namespace": "waybar",
+        "layer": "top",
+        "extent": {
+          "width": 1280,
+          "height": 30,
+          "x": 0,
+          "y": 0
+        },
+        "effects": {
+          "blur": false,
+          "blur_xray": false,
+          "blur_ignore_transparent": false,
+          "shadows": false,
+          "corner_radius": 0
+        }
+      }
+    ],
+    "current_workspace": "10",
+    "current_mode": {
+      "width": 1280,
+      "height": 1024,
+      "refresh": 60020,
+      "picture_aspect_ratio": "none"
+    },
+    "max_render_time": 0,
+    "allow_tearing": false,
+    "focused": false,
+    "subpixel_hinting": "unknown"
+  }
+]
+\n== get_workspaces ==
+[
+  {
+    "id": 160,
+    "type": "workspace",
+    "orientation": "horizontal",
+    "percent": null,
+    "urgent": false,
+    "marks": [],
+    "layout": "splith",
+    "border": "none",
+    "current_border_width": 0,
+    "rect": {
+      "x": 8,
+      "y": 38,
+      "width": 1904,
+      "height": 1034
+    },
+    "deco_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "window_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "geometry": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "name": "1",
+    "window": null,
+    "nodes": [],
+    "floating_nodes": [],
+    "focus": [
+      162
+    ],
+    "fullscreen_mode": 1,
+    "sticky": false,
+    "floating": null,
+    "scratchpad_state": null,
+    "num": 1,
+    "output": "eDP-1",
+    "representation": "H[code]",
+    "focused": false,
+    "visible": false
+  },
+  {
+    "id": 161,
+    "type": "workspace",
+    "orientation": "vertical",
+    "percent": null,
+    "urgent": false,
+    "marks": [],
+    "layout": "splitv",
+    "border": "none",
+    "current_border_width": 0,
+    "rect": {
+      "x": 8,
+      "y": 38,
+      "width": 1904,
+      "height": 1034
+    },
+    "deco_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "window_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "geometry": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "name": "2",
+    "window": null,
+    "nodes": [],
+    "floating_nodes": [],
+    "focus": [
+      147
+    ],
+    "fullscreen_mode": 1,
+    "sticky": false,
+    "floating": null,
+    "scratchpad_state": null,
+    "num": 2,
+    "output": "eDP-1",
+    "representation": "V[H[code]]",
+    "focused": true,
+    "visible": true
+  },
+  {
+    "id": 165,
+    "type": "workspace",
+    "orientation": "horizontal",
+    "percent": null,
+    "urgent": false,
+    "marks": [],
+    "layout": "splith",
+    "border": "none",
+    "current_border_width": 0,
+    "rect": {
+      "x": 1928,
+      "y": 38,
+      "width": 1264,
+      "height": 978
+    },
+    "deco_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "window_rect": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "geometry": {
+      "x": 0,
+      "y": 0,
+      "width": 0,
+      "height": 0
+    },
+    "name": "10",
+    "window": null,
+    "nodes": [],
+    "floating_nodes": [],
+    "focus": [
+      170,
+      166,
+      169,
+      168
+    ],
+    "fullscreen_mode": 1,
+    "sticky": false,
+    "floating": null,
+    "scratchpad_state": null,
+    "num": 10,
+    "output": "HDMI-A-5",
+    "representation": "H[foot foot foot foot]",
+    "focused": false,
+    "visible": true
+  }
+]
+\n== get_tree (first-level) ==
+{
+  "name": "__i3",
+  "type": "output",
+  "rect": {
+    "x": 0,
+    "y": 0,
+    "width": 3200,
+    "height": 1080
+  },
+  "focused": false,
+  "output": null
+}
+{
+  "name": "eDP-1",
+  "type": "output",
+  "rect": {
+    "x": 0,
+    "y": 0,
+    "width": 1920,
+    "height": 1080
+  },
+  "focused": false,
+  "output": null
+}
+{
+  "name": "HDMI-A-5",
+  "type": "output",
+  "rect": {
+    "x": 1920,
+    "y": 0,
+    "width": 1280,
+    "height": 1024
+  },
+  "focused": false,
+  "output": null
+}
+\n== sway-errors.log tail ==
+
+========================================
+Config reload: Fri Jan  9 10:13:20 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:15:54 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:16:03 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:21:31 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:21:56 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:36:58 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:37:09 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:44:49 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 10:51:59 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 12:32:43 PM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 12:33:50 PM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Fri Jan  9 12:35:52 PM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 12:50:14 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 12:51:27 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:39:38 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:40:20 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:47:06 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:48:10 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:52:47 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:52:48 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:54:41 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:55:32 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:26 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:29 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:29 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:30 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:30 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:31 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:31 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:31 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:56:32 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:57:06 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:57:28 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 01:59:44 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 02:01:19 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 02:01:48 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 02:02:59 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 02:08:35 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 02:19:10 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+
+========================================
+Config reload: Sat Jan 10 02:21:05 AM UTC 2026
+========================================
+Status: OK - Reloaded successfully
+\n== journalctl last 200 lines for sway (if available) ==
+-- No entries --
+\n== dmesg tail 200 lines ==
+dmesg: read kernel buffer failed: Operation not permitted
