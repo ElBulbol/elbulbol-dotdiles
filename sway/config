@@ -20,7 +20,12 @@ output eDP-1 mode 1920x1080 position 0 0
 output HDMI-A-5 mode 1280x1024 position 1920 0 scale 1 transform normal
 
 # Wallpaper
+# Default wallpaper for all outputs (fallback)
 output * bg ~/.config/sway/wallpapers/wallpaper.png fill
+
+# Set a lightweight, size-matching wallpaper for the external 1280x1024 monitor
+# Use `center` to avoid scaling and reduce RAM usage when possible
+output HDMI-A-5 bg ~/.config/sway/wallpapers/wallpaper-1280_1024.png center
 
 # ============================================
 # IDLE AND LOCK CONFIGURATION
