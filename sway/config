@@ -62,6 +62,10 @@ client.unfocused #1f1f1f #1f1f1f #888888 #1f1f1f #1f1f1f
 # Terminal
 bindsym Ctrl+Return exec $term
 
+# Create a new workspace to the right of the current one and switch to it
+# Win+Enter
+bindsym $mod+Return exec /home/elbulbol/.config/sway/scripts/new-workspace-next.sh
+
 # Application launcher
 bindsym Ctrl+Space exec $menu
  
