@@ -3,12 +3,11 @@
 # Get current default sink
 SINK=$(pactl get-default-sink)
 
-# Determine device type and class
-if echo "$SINK" | grep -qi "bluez\|bluetooth"; then
+# Determine device type and class - optimized with bash pattern matching
+if [[ $SINK == *"bluez"* ]] || [[ $SINK == *"bluetooth"* ]]; then
     CLASS="headset"
-    # Extract bluetooth device name (simplified)
     DEVICE="BT"
-elif echo "$SINK" | grep -qi "hdmi"; then
+elif [[ $SINK == *"hdmi"* ]] || [[ $SINK == *"HDMI"* ]]; then
     CLASS="headset"
     DEVICE="HDMI"
 else

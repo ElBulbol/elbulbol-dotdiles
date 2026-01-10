@@ -26,13 +26,13 @@
 
     "cpu": {
         "format": "CPU",
-        "interval": 5,
+        "interval": 10,
         "tooltip": true
     },
 
     "memory": {
         "format": "[RAM] {}%",
-        "interval": 5,
+        "interval": 10,
         "tooltip": true
     },
 
@@ -44,20 +44,19 @@
         "format": "BAT {capacity}%",
         "format-charging": "BAT {capacity}%",
         "format-plugged": "BAT {capacity}%",
-        "interval": 10
+        "interval": 30
     },
 
     "network": {
         "format-wifi": "NET",
         "format-ethernet": "NET",
         "format-disconnected": "NET Disconnected",
-        "interval": 5,
+        "interval": 10,
         "tooltip-format": "{ifname}: {ipaddr}"
     },
 
     "custom/volume": {
         "exec": "/home/elbulbol/.config/waybar/volume-popup.sh",
-        "interval": 2,
         "return-type": "json",
         "format": "{text}",
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -66,7 +65,6 @@
 
     "custom/brightness": {
         "exec": "/home/elbulbol/.config/waybar/brightness-popup.sh",
-        "interval": 2,
         "return-type": "json",
         "format": "{text}",
         "signal": 10
@@ -74,7 +72,7 @@
 
     "custom/audio-output": {
         "exec": "/home/elbulbol/.config/waybar/audio-output-display.sh",
-        "interval": 5,
+        "interval": 10,
         "return-type": "json",
         "format": "{text}",
         "on-click": "/home/elbulbol/.config/waybar/toggle-audio-output.sh",

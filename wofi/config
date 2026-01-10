@@ -10,8 +10,8 @@ mode=drun
 width=700
 height=450
 
-# Lines to display
-lines=8
+# Lines to display - reduced for faster rendering
+lines=6
 
 # Icons - optimized size
 show_icons=true

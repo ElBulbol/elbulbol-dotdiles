@@ -213,8 +213,8 @@ exec_always --no-startup-id sh -c 'pkill -x waybar || true; setsid waybar -c ~/.
 # Ensure wofi is not left running between reloads
 exec_always --no-startup-id sh -c 'pkill -x wofi || true'
 
-# Autotiling script
-exec_always autotiling
+# Autotiling script - use exec instead of exec_always to avoid duplicates
+exec autotiling
 
 # Environment setup for screen sharing
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -225,9 +225,8 @@ exec --no-startup-id sleep 2 && /usr/libexec/xdg-desktop-portal -r
 # Notification daemon (safe launcher — logs if missing)
 exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
 
-# Clipboard manager daemon
-exec_always wl-paste --type text --watch cliphist store
-exec_always wl-paste --type image --watch cliphist store
+# Clipboard manager daemon - consolidated for efficiency
+exec_always sh -c 'pkill -x wl-paste; wl-paste --watch cliphist store'
 
 # ============================================
 # MISC

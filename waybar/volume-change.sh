@@ -14,11 +14,8 @@ case $1 in
         ;;
 esac
 
-
 touch "$LOCKFILE"
-
-# signal to waybar 
 pkill -RTMIN+8 waybar
 
-
-(sleep 2 && rm -f "$LOCKFILE" && pkill -RTMIN+8 waybar) &
+# Use exec to replace shell with sleep, reducing process count
+(sleep 2; rm -f "$LOCKFILE"; pkill -RTMIN+8 waybar) &
