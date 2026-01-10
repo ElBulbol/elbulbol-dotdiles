@@ -4,16 +4,11 @@
     "height": 30,
     "spacing": 4,
 
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/monitor", "custom/date"],
+    "modules-left": ["sway/workspaces", "sway/mode", "custom/date"],
     "modules-center": ["clock"],
     "modules-right": ["custom/volume", "custom/brightness", "custom/audio-output", "custom/bluetooth", "network", "cpu", "memory", "battery", "tray"],
 
-    "custom/monitor": {
-        "exec": "~/.config/waybar/monitor-label.sh",
-        "interval": 1,
-        "return-type": "json",
-        "format": "  {}"
-    },
+    /* monitor label removed */
 
     "sway/workspaces": {
         "disable-scroll": true,

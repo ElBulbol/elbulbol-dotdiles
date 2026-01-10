@@ -55,9 +55,12 @@ input type:keyboard {
 corner_radius 10
 gaps inner 8
 gaps outer 0
-default_border pixel 2
-default_floating_border pixel 2
-client.focused #404040 #404040 #ffffff #404040 #404040
+# Slightly thicker borders so focused windows are more visible
+default_border pixel 3
+default_floating_border pixel 3
+# Make focused border stand out with a subtle accent color
+# Format: client.focused <border> <background> <text> <indicator> <child_border>
+client.focused #6ea8fe #404040 #ffffff #6ea8fe #6ea8fe
 client.focused_inactive #2f2f2f #2f2f2f #aaaaaa #2f2f2f #2f2f2f
 client.unfocused #1f1f1f #1f1f1f #888888 #1f1f1f #1f1f1f
 
