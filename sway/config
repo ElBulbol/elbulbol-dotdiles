@@ -70,8 +70,7 @@ bindsym $mod+Return exec /home/elbulbol/.config/sway/scripts/new-workspace-next.
 bindsym Ctrl+Space exec $menu
  
 # Sync dotfiles - Win+S opens terminal and runs sync script
-bindsym $mod+s exec foot bash -c '$HOME/scripts/sync-dotfiles.sh; echo ""; echo "Press Enter to close..."; read'
-
+bindsym $mod+s exec foot bash -c '$HOME/scripts/sync-dotfiles.sh'
 # Kill focused window
 bindsym $mod+q kill
 
