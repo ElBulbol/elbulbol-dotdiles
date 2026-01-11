@@ -566,7 +566,11 @@ exec_always --no-startup-id ~/.config/sway/scripts/monitor-hotplug.sh
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # xdg-desktop-portal for screen sharing (Discord, etc.)
-exec --no-startup-id sleep 2 && /usr/libexec/xdg-desktop-portal -r
+# Ensure the portal daemon is restarted and the WLR backend is started.
+# Fix: use correct binary path and explicitly start the wlr backend so
+# screen chooser (monitor selection) works reliably under Sway.
+exec --no-startup-id sleep 2 && /usr/lib/xdg-desktop-portal -r
+exec_always --no-startup-id /usr/lib/xdg-desktop-portal-wlr -r &
 
 # Notification daemon (safe launcher — logs if missing)
 exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
