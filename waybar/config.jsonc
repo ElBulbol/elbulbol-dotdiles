@@ -30,10 +30,10 @@
     },
 
     "clock": {
-        "format": "{:%H:%M}",
+        "format": "{:%I:%M %p}", 
         "format-alt": "{:%A, %B %d, %Y}",
         "tooltip-format": "<tt>{calendar}</tt>",
-        "timezone": "Europe/Athens"
+        "timezone": "Africa/Cairo"
     },
 
     "cpu": {
