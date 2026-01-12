@@ -1,0 +1,123 @@
+00:00:00.543 [ERROR] [sway/server.c:163] !!! Proprietary Nvidia drivers are in use !!!
+00:00:00.928 [ERROR] [wlr] [render/allocator/gbm.c:118] gbm_bo_create failed: Invalid argument
+00:00:00.928 [ERROR] [wlr] [render/fx_renderer/fx_framebuffer.c:95] Failed to allocate buffer
+2026-01-12 01:55:48 - [swaybg-1.2.1/main.c:282] Found config HDMI-A-5 for output HDMI-A-5 (Northgate Computer Systems 0x2275)
+2026-01-12 01:55:48 - [swaybg-1.2.1/main.c:282] Found config * for output eDP-1 (BOE 0x0C29 0x00000067)
+warn: wayland.c:1794: compositor does not implement the XDG toplevel icon protocol
+warn: terminal.c:2029: slave exited with signal 1 (Hangup)
+warn: wayland.c:1794: compositor does not implement the XDG toplevel icon protocol
+warn: terminal.c:2029: slave exited with signal 1 (Hangup)
+wofi: unrecognized option '--config'
+
+(wofi:1636): Gtk-WARNING **: 01:56:22.486: Theme parsing error: <data>:67:6: 'width' is not a valid property name
+
+(wofi:1636): Gtk-WARNING **: 01:56:22.486: Theme parsing error: <data>:68:7: 'height' is not a valid property name
+
+(wofi:1636): Gtk-WARNING **: 01:56:22.486: Theme parsing error: <data>:80:36: 'display' is not a valid property name
+wofi: unrecognized option '--config'
+
+(wofi:1989): Gtk-WARNING **: 01:56:27.635: Theme parsing error: <data>:67:6: 'width' is not a valid property name
+
+(wofi:1989): Gtk-WARNING **: 01:56:27.635: Theme parsing error: <data>:68:7: 'height' is not a valid property name
+
+(wofi:1989): Gtk-WARNING **: 01:56:27.635: Theme parsing error: <data>:80:36: 'display' is not a valid property name
+warn: wayland.c:1794: compositor does not implement the XDG toplevel icon protocol
+wofi: unrecognized option '--config'
+
+(wofi:2321): Gtk-WARNING **: 01:56:53.529: Theme parsing error: <data>:67:6: 'width' is not a valid property name
+
+(wofi:2321): Gtk-WARNING **: 01:56:53.529: Theme parsing error: <data>:68:7: 'height' is not a valid property name
+
+(wofi:2321): Gtk-WARNING **: 01:56:53.529: Theme parsing error: <data>:80:36: 'display' is not a valid property name
+warn: wayland.c:1794: compositor does not implement the XDG toplevel icon protocol
+warn: terminal.c:2029: slave exited with signal 1 (Hangup)
+00:01:25.228 [ERROR] [wlr] [libinput] event13 - SYNA2BA6:00 06CB:CEFE Touchpad: kernel bug: Touch jump detected and discarded.
+See https://wayland.freedesktop.org/libinput/doc/1.30.1/touchpad-jumping-cursors.html for details
+
+warn: terminal.c:2029: slave exited with signal 1 (Hangup)
+warn: wayland.c:1794: compositor does not implement the XDG toplevel icon protocol
+warn: wayland.c:2476: compositor does not implement the XDG system bell protocol
+warn: terminal.c:2029: slave exited with signal 1 (Hangup)
+wofi: unrecognized option '--config'
+
+(wofi:2701): Gtk-WARNING **: 01:57:35.046: Theme parsing error: <data>:67:6: 'width' is not a valid property name
+
+(wofi:2701): Gtk-WARNING **: 01:57:35.046: Theme parsing error: <data>:68:7: 'height' is not a valid property name
+
+(wofi:2701): Gtk-WARNING **: 01:57:35.046: Theme parsing error: <data>:80:36: 'display' is not a valid property name
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+wofi: unrecognized option '--config'
+
+(wofi:3190): Gtk-WARNING **: 01:57:39.272: Theme parsing error: <data>:67:6: 'width' is not a valid property name
+
+(wofi:3190): Gtk-WARNING **: 01:57:39.272: Theme parsing error: <data>:68:7: 'height' is not a valid property name
+
+(wofi:3190): Gtk-WARNING **: 01:57:39.272: Theme parsing error: <data>:80:36: 'display' is not a valid property name
+2026/01/12 01:58:24 [ERROR] - sd_bus_process failed: Connection reset by peer
+'impl->enter_count > 0' failed at ../pipewire/spa/plugins/support/loop.c:592 loop_leave()
+2026-01-12 01:58:24 - [swaybg-1.2.1/main.c:282] Found config HDMI-A-5 for output HDMI-A-5 (Northgate Computer Systems 0x2275)
+2026-01-12 01:58:24 - [swaybg-1.2.1/main.c:282] Found config * for output eDP-1 (BOE 0x0C29 0x00000067)
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+The XKEYBOARD keymap compiler (xkbcomp) reports:
+> Warning:          Unsupported maximum keycode 708, clipping.
+>                   X11 cannot support keycodes above 255.
+> Warning:          Virtual modifier Hyper multiply defined
+>                   Using 0, ignoring 0
+> Warning:          Virtual modifier ScrollLock multiply defined
+>                   Using 0, ignoring 0
+Errors from xkbcomp are not fatal to the X server
+warn: wayland.c:1794: compositor does not implement the XDG toplevel icon protocol

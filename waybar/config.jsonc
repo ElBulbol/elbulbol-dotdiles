@@ -8,7 +8,6 @@
     "modules-center": ["clock"],
     "modules-right": ["custom/volume", "custom/brightness", "custom/audio-output", "custom/bluetooth", "network", "cpu", "memory", "battery", "tray"],
 
-    /* monitor label removed */
 
     "sway/workspaces": {
         "disable-scroll": true,

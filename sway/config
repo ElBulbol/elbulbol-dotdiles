@@ -296,12 +296,11 @@
 ### Last Updated: January 8, 2026
 ### Using bindcode for Arabic keyboard layout compatibility
 
+
+#--------------------------
 # ============================================
 # VARIABLES
 # ============================================
-
-#------
-
 set $mod Mod4
 set $term foot
 set $menu ~/.config/wofi/wofi-launcher.sh
@@ -309,32 +308,21 @@ set $menu ~/.config/wofi/wofi-launcher.sh
 # ============================================
 # OUTPUT CONFIGURATION (MONITORS)
 # ============================================
-# Laptop screen (Main) - 1920x1080 @ 144Hz
-# Prefer `mode` over `resolution` and mark laptop as primary
-output eDP-1 mode 1920x1080 position 0 0
+output eDP-1 mode 1920x1080@144Hz position 0 0
+output HDMI-A-5 mode 1280x1024@60Hz position 1920 0 scale 1 transform normal
 
-# External HDMI monitor - 1280x1024 @ 60Hz (positioned to the right of laptop)
-# Ensure the output is enabled and set sane defaults (scale/transform)
-output HDMI-A-5 mode 1280x1024 position 1920 0 scale 1 transform normal
-
-# Wallpaper
-# Default wallpaper for all outputs (fallback)
+# Wallpaper - optimized
 output * bg ~/.config/sway/wallpapers/wallpaper.png fill
-
-# Set a lightweight, size-matching wallpaper for the external 1280x1024 monitor
-# Use `center` to avoid scaling and reduce RAM usage when possible
 output HDMI-A-5 bg ~/.config/sway/wallpapers/wallpaper-1280_1024.png center
 
 # ============================================
 # IDLE AND LOCK CONFIGURATION
 # ============================================
-# Use a safe launcher that checks for swayidle before running.
 exec_always --no-startup-id ~/.config/sway/scripts/swayidle-launch.sh
 
 # ============================================
 # INPUT CONFIGURATION
 # ============================================
-# Touchpad configuration
 input type:touchpad {
     dwt enabled
     tap enabled
@@ -342,86 +330,70 @@ input type:touchpad {
     middle_emulation enabled
 }
 
-# Keyboard layout
 input type:keyboard {
     xkb_layout "us,ara"
     xkb_options "grp:alt_shift_toggle"
 }
 
 # ============================================
-# APPEARANCE (SwayFX)
+# APPEARANCE (SwayFX) - OPTIMIZED FOR RAM
 # ============================================
-corner_radius 10
-gaps inner 8
+# Reduced corner radius (less GPU memory)
+corner_radius 6
+
+# Smaller gaps (less compositing overhead)
+gaps inner 6
 gaps outer 0
-# Slightly thicker borders so focused windows are more visible
-# Thicker borders so the two-tone effect is visible
-default_border pixel 6
-default_floating_border pixel 6
-# Simulate a vertical gradient by using an outer white border and inner black child border.
-# Sway doesn't support real gradient borders; this two-tone border gives a similar visual cue.
-# Format: client.focused <border> <background> <text> <indicator> <child_border>
-# Approximated vertical gradient using three tones:
-# outer border = white, indicator (mid border) = light gray,
-# inner child border = black. This gives a smoother transition.
+
+# Thinner borders (less rendering)
+default_border pixel 3
+default_floating_border pixel 3
+
+# Disable blur and shadows (HUGE RAM savings)
+# If you want blur, uncomment this but expect +30-50 MB RAM usage:
+# blur enable
+# blur_xray disable
+# blur_passes 2
+# blur_radius 3
+# shadows enable
+# shadow_blur_radius 10
+
+# Disable dimming for inactive windows (saves GPU cycles)
+# default_dim_inactive 0.0
+
+# Color scheme (unchanged)
 client.focused #7a7878 #404040 #ffffff #7a7878 #7a7878
 client.focused_inactive #2f2f2f #2f2f2f #aaaaaa #2f2f2f #2f2f2f
-# Make unfocused border lighter than the original dark gray
-# Format: client.unfocused <border> <background> <text> <indicator> <child_border>
 client.unfocused #e6e6e6 #1f1f1f #bdbdbd #dcdcdc #2b2b2b
 
 # ============================================
 # KEYBINDINGS - BASICS
 # ============================================
-# Terminal (Ctrl+Return)
 bindcode Control+36 exec $term
-
-# Create a new workspace to the right of the current one and switch to it (Win+Return)
 bindcode $mod+36 exec /home/elbulbol/.config/sway/scripts/new-workspace-next.sh
-
-# Application launcher (Ctrl+Space)
 bindcode Control+65 exec $menu
- 
-# Sync dotfiles - Win+S opens terminal and runs sync script
 bindcode $mod+39 exec foot bash -c '$HOME/scripts/sync-dotfiles.sh'
-
-# Kill focused window (Win+Q)
 bindcode $mod+24 kill
-
-# Reload sway config (Win+Shift+C)
 bindcode $mod+Shift+54 exec ~/.config/sway/sway-reload.sh
-
-# Exit sway (Win+Shift+Q)
 bindcode $mod+Shift+24 exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
-
-# Lock screen (Win+Ctrl+L)
 bindcode $mod+Ctrl+46 exec swaylock -f --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5
-
-# Clipboard manager (Win+V)
 bindcode $mod+55 exec ~/.config/sway/scripts/clipboard-manager.sh
 
 # ============================================
 # KEYBINDINGS - WINDOW NAVIGATION
 # ============================================
-# Focus (Win+H/J/K/L)
 bindcode $mod+43 focus left
 bindcode $mod+44 focus down
 bindcode $mod+45 focus up
 bindcode $mod+46 focus right
-
-# Focus with arrow keys (Win + arrows)
 bindcode $mod+113 focus left
 bindcode $mod+116 focus down
 bindcode $mod+111 focus up
 bindcode $mod+114 focus right
-
-# Move windows (Win+Shift+H/J/K/L)
 bindcode $mod+Shift+43 move left
 bindcode $mod+Shift+44 move down
 bindcode $mod+Shift+45 move up
 bindcode $mod+Shift+46 move right
-
-# Move windows with arrows (Win+Shift+arrow)
 bindcode $mod+Shift+113 move left
 bindcode $mod+Shift+116 move down
 bindcode $mod+Shift+111 move up
@@ -430,21 +402,16 @@ bindcode $mod+Shift+114 move right
 # ============================================
 # KEYBINDINGS - WORKSPACES
 # ============================================
-# Workspace-to-monitor assignments
-# Workspaces 1-5 on laptop screen
 workspace 1 output eDP-1
 workspace 2 output eDP-1
 workspace 3 output eDP-1
 workspace 4 output eDP-1
 workspace 5 output eDP-1
-
-# Workspaces 6-9 on external monitor
 workspace 6 output HDMI-A-5
 workspace 7 output HDMI-A-5
 workspace 8 output HDMI-A-5
 workspace 9 output HDMI-A-5
 
-# Switch to workspace (Win+1 through Win+9)
 bindcode $mod+10 workspace number 1
 bindcode $mod+11 workspace number 2
 bindcode $mod+12 workspace number 3
@@ -455,7 +422,6 @@ bindcode $mod+16 workspace number 7
 bindcode $mod+17 workspace number 8
 bindcode $mod+18 workspace number 9
 
-# Move container to workspace (Win+Shift+1 through Win+Shift+9)
 bindcode $mod+Shift+10 move container to workspace number 1
 bindcode $mod+Shift+11 move container to workspace number 2
 bindcode $mod+Shift+12 move container to workspace number 3
@@ -466,76 +432,46 @@ bindcode $mod+Shift+16 move container to workspace number 7
 bindcode $mod+Shift+17 move container to workspace number 8
 bindcode $mod+Shift+18 move container to workspace number 9
 
-# Alt+Tab to switch to last workspace
 bindcode Mod1+23 workspace back_and_forth
-
-# Move focus between monitors (Win+Period, Win+Comma)
 bindcode $mod+60 focus output right
 bindcode $mod+59 focus output left
-
-# Linear workspace navigation (Win+Ctrl+Right/Left)
 bindcode $mod+Ctrl+114 workspace next
 bindcode $mod+Ctrl+113 workspace prev
-
-# Move workspace to different monitor (Win+Shift+Period/Comma)
 bindcode $mod+Shift+60 move workspace to output right
 bindcode $mod+Shift+59 move workspace to output left
-
 # ============================================
 # KEYBINDINGS - LAYOUT
 # ============================================
-# Fullscreen (Win+E)
 bindcode $mod+26 fullscreen toggle
-
-# Floating (Win+Shift+Space)
 bindcode $mod+Shift+65 floating toggle
-
-# Toggle split direction (Win+T)
 bindcode $mod+28 layout toggle split
-
-# Tabbed layout (Win+M)
 bindcode $mod+58 layout tabbed
-
-# Resize windows (Win+G to grow, Win+F to shrink)
 bindcode $mod+42 resize grow width 10px
 bindcode $mod+41 resize shrink width 10px
 
 # ============================================
 # KEYBINDINGS - WAYBAR
 # ============================================
-# Toggle waybar visibility (Win+B)
 bindcode $mod+56 exec killall -SIGUSR1 waybar
-
-# Restart waybar (Win+Shift+B)
 bindcode $mod+Shift+56 exec sh -c 'pkill -x waybar || true; setsid waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css >/dev/null 2>&1 &'
-
-# Hide waybar (Win+Alt+C)
 bindcode $mod+Mod1+54 exec killall -SIGUSR1 waybar
 
 # ============================================
 # KEYBINDINGS - SCREENSHOTS & RECORDING
 # ============================================
-# Screenshot (Win+Shift+S)
 bindcode $mod+Shift+39 exec ~/.config/sway/scripts/screenshot.sh
-
-# OBS Studio (Win+Shift+R)
 bindcode $mod+Shift+27 exec ~/.config/sway/scripts/obs-wayland.sh
 
 # ============================================
 # KEYBINDINGS - MEDIA KEYS (LAPTOP)
 # ============================================
-# Volume control
 bindcode 121 exec ~/.config/waybar/volume-change.sh mute
 bindcode 122 exec ~/.config/waybar/volume-change.sh down
 bindcode 123 exec ~/.config/waybar/volume-change.sh up
-
-# Media playback
 bindcode 172 exec playerctl play-pause
 bindcode 127 exec playerctl pause
 bindcode 171 exec playerctl next
 bindcode 173 exec playerctl previous
-
-# Brightness control
 bindcode 232 exec ~/.config/waybar/brightness-change.sh down
 bindcode 233 exec ~/.config/waybar/brightness-change.sh up
 bindcode 71 exec ~/.config/waybar/brightness-change.sh down
@@ -550,39 +486,28 @@ for_window [title="Picture-in-Picture"] floating enable, sticky enable
 # ============================================
 # AUTOSTART
 # ============================================
-# Waybar status bar: ensure single instance on reload
 exec_always --no-startup-id sh -c 'pkill -x waybar || true; setsid waybar -c ~/.config/waybar/config.jsonc -s ~/.config/waybar/style.css >/dev/null 2>&1 &'
-
-# Ensure wofi is not left running between reloads
 exec_always --no-startup-id sh -c 'pkill -x wofi || true'
-
-# Monitor hotplug watcher: auto-enable external monitor when connected
 exec_always --no-startup-id ~/.config/sway/scripts/monitor-hotplug.sh
 
-# Autotiling script - disabled per user request (it forces tiled/tabbed layouts)
-# exec autotiling
+# Autotiling - automatically switches between horizontal and vertical splits
+exec_always --no-startup-id autotiling
 
-# Environment setup for screen sharing
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
-# xdg-desktop-portal for screen sharing (Discord, etc.)
-# Ensure the portal daemon is restarted and the WLR backend is started.
-# Fix: use correct binary path and explicitly start the wlr backend so
-# screen chooser (monitor selection) works reliably under Sway.
 exec --no-startup-id sleep 2 && /usr/lib/xdg-desktop-portal -r
 exec_always --no-startup-id /usr/lib/xdg-desktop-portal-wlr -r &
-
-# Notification daemon (safe launcher — logs if missing)
 exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
-
-# Clipboard manager daemon - consolidated for efficiency
 exec_always sh -c 'pkill -x wl-paste; wl-paste --watch cliphist store'
 
 # ============================================
 # MISC
 # ============================================
-# Disable focus follows mouse
 focus_follows_mouse no
-
-# Mouse warping
 mouse_warping none
+#-----------------------------
+#Connecting to the WARP toggle scripts 
+bindcode $mod+Shift+34 exec foot -e ~/scripts/warp-toggle.sh
+
+#---------
+#Trying some featrues 
+bindcode $mod+Shift+36 exec sh -c 'current=$(swaymsg -t get_workspaces | jq -r ".[] | select(.focused==true).num"); next=$((current + 1)); swaymsg move container to workspace number $next' ## holy moly jq is 10/10
