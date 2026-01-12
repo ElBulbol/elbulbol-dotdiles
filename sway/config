@@ -511,3 +511,4 @@ bindcode $mod+Shift+34 exec foot -e ~/scripts/warp-toggle.sh
 #---------
 #Trying some featrues 
 bindcode $mod+Shift+36 exec sh -c 'current=$(swaymsg -t get_workspaces | jq -r ".[] | select(.focused==true).num"); next=$((current + 1)); swaymsg move container to workspace number $next' ## holy moly jq is 10/10
+
