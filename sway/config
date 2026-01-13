@@ -346,8 +346,9 @@ gaps inner 6
 gaps outer 0
 
 # Thinner borders (less rendering)
-default_border pixel 3
-default_floating_border pixel 3
+# Reduced to 1px for minimal borders
+default_border pixel 1.5
+default_floating_border pixel 1
 
 # Disable blur and shadows (HUGE RAM savings)
 # If you want blur, uncomment this but expect +30-50 MB RAM usage:
