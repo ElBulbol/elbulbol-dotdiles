@@ -22,12 +22,16 @@ fi
 
 # Start swayidle only if available
 if command -v swayidle >/dev/null 2>&1; then
-  # Use a lightweight lock (solid black) instead of expensive blur/screenshot effects
+  # Use the user's wallpaper with blur/vignette for the lock screen
+  WALLPAPER="$HOME/.config/sway/wallpapers/wallpaper.png"
+  if [ ! -f "$WALLPAPER" ]; then
+    WALLPAPER="/usr/share/backgrounds/gnome/adwaita-day.png"
+  fi
   setsid swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
+    timeout 300 "swaylock -f -i $WALLPAPER --scaling fill" \
     timeout 600 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -c 000000' >/dev/null 2>&1 &
+    before-sleep "swaylock -f -i $WALLPAPER --scaling fill" >/dev/null 2>&1 &
 else
   echo "$(date) - swayidle not found; skipping" >> "$LOG"
 fi

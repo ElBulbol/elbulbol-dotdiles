@@ -309,7 +309,7 @@ set $menu ~/.config/wofi/wofi-launcher.sh
 # OUTPUT CONFIGURATION (MONITORS)
 # ============================================
 output eDP-1 mode 1920x1080@144Hz position 0 0
-output HDMI-A-5 mode 1280x1024@60Hz position 1920 0 scale 1 transform normal
+output HDMI-A-5 mode  1280x1024@60Hz position 1920 0 scale 1 transform normal
 
 # Wallpaper - optimized
 output * bg ~/.config/sway/wallpapers/wallpaper.png fill
@@ -377,8 +377,11 @@ bindcode $mod+39 exec foot bash -c '$HOME/scripts/sync-dotfiles.sh'
 bindcode $mod+24 kill
 bindcode $mod+Shift+54 exec ~/.config/sway/sway-reload.sh
 bindcode $mod+Shift+24 exec swaynag -t warning -m 'Exit Sway?' -B 'Yes' 'swaymsg exit'
-bindcode $mod+Ctrl+46 exec swaylock -f --screenshots --effect-blur 7x5 --effect-vignette 0.5:0.5
+bindcode $mod+Ctrl+46 exec swaylock -f -i ~/.config/sway/wallpapers/wallpaper.png --scaling fill
 bindcode $mod+55 exec ~/.config/sway/scripts/clipboard-manager.sh
+
+# Map symbolic Win+L to lock screen (use wallpaper as background)
+bindsym $mod+l exec swaylock -f -i ~/.config/sway/wallpapers/wallpaper.png --scaling fill
 
 # ============================================
 # KEYBINDINGS - WINDOW NAVIGATION
@@ -386,7 +389,7 @@ bindcode $mod+55 exec ~/.config/sway/scripts/clipboard-manager.sh
 bindcode $mod+43 focus left
 bindcode $mod+44 focus down
 bindcode $mod+45 focus up
-bindcode $mod+46 focus right
+bindcode $mod+46 exec swaylock -f -i ~/.config/sway/wallpapers/wallpaper.png --scaling fill
 bindcode $mod+113 focus left
 bindcode $mod+116 focus down
 bindcode $mod+111 focus up
@@ -495,7 +498,7 @@ exec_always --no-startup-id ~/.config/sway/scripts/monitor-hotplug.sh
 exec_always --no-startup-id autotiling
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec --no-startup-id sleep 2 && /usr/lib/xdg-desktop-portal -r
+exec --no-startup-id /usr/lib/xdg-desktop-portal -r
 exec_always --no-startup-id /usr/lib/xdg-desktop-portal-wlr -r &
 exec_always --no-startup-id ~/.config/sway/scripts/mako-launch.sh
 exec_always sh -c 'pkill -x wl-paste; wl-paste --watch cliphist store'
